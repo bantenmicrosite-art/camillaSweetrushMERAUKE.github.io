@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Produk & Stok — Camila SweetRush</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --pink:#e85d8f;
+  --pink-dark:#c83f70;
+  --pink-soft:#fff1f6;
+  --bg:#fff8fb;
+  --text:#332b2f;
+  --muted:#8b7c83;
+  --border:#eee1e6;
+  --green:#38a169;
+  --orange:#d88a27;
+  --red:#d9536f;
+  --shadow:0 10px 30px rgba(180,80,120,.09);
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.header{
+  height:72px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 30px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  background:linear-gradient(
+    135deg,
+    #f17ba5,
+    #d9477b
+  );
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:bold;
+}
+
+.brand-text strong{
+  display:block;
+  font-size:16px;
+}
+
+.brand-text span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
+  letter-spacing:1px;
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.user-text{
+  text-align:right;
+}
+
+.user-text strong{
+  display:block;
+  font-size:12px;
+}
+
+.user-text span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:2px;
+}
+
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--pink-soft);
+  color:var(--pink-dark);
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:bold;
+}
+
+
+/* ================= PAGE ================= */
+
+.page{
+  max-width:1400px;
+  margin:auto;
+  padding:28px 30px 50px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.title h1{
+  font-size:26px;
+  margin-bottom:5px;
+}
+
+.title p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.logout{
+  border:1px solid var(--border);
+  background:#fff;
+  color:#665b61;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.logout:hover{
+  border-color:#e5a1b8;
+  color:var(--pink-dark);
+}
+
+
+/* ================= INFO ================= */
+
+.info{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.info-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.info-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:var(--pink-soft);
+  display:grid;
+  place-items:center;
+  font-size:20px;
+}
+
+.info-card small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:4px;
+}
+
+.info-card strong{
+  font-size:18px;
+}
+
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow);
+}
+
+.search{
+  position:relative;
+  margin-bottom:13px;
+}
+
+.search input{
+  width:100%;
+  height:45px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:0 15px 0 42px;
+  outline:none;
+  font-size:13px;
+}
+
+.search input:focus{
+  border-color:#e5a1b8;
+  box-shadow:0 0 0 4px rgba(232,93,143,.06);
+}
+
+.search-icon{
+  position:absolute;
+  left:15px;
+  top:12px;
+  color:#a6949d;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+}
+
+.category{
+  border:1px solid var(--border);
+  background:#fff;
+  color:#766b70;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:11px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.category.active,
+.category:hover{
+  background:var(--pink);
+  border-color:var(--pink);
+  color:#fff;
+}
+
+
+/* ================= PRODUCTS ================= */
+
+.products{
+  display:grid;
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+  gap:15px;
+}
+
+.product{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.2s;
+}
+
+.product:hover{
+  transform:translateY(-3px);
+  border-color:#e8a8bd;
+}
+
+.product-image{
+  height:155px;
+  background:
+    linear-gradient(
+      135deg,
+      #fff0f5,
+      #fbdfe9
+    );
+  display:grid;
+  place-items:center;
+  font-size:55px;
+}
+
+.product-body{
+  padding:14px;
+}
+
+.product-category{
+  color:var(--pink-dark);
+  font-size:9px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  margin-bottom:6px;
+}
+
+.product-name{
+  font-size:14px;
+  font-weight:bold;
+  line-height:1.35;
+  min-height:38px;
+}
+
+.price{
+  color:var(--pink-dark);
+  font-size:16px;
+  font-weight:bold;
+  margin:11px 0;
+}
+
+.stock-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.stock-number{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.status{
+  padding:5px 8px;
+  border-radius:20px;
+  font-size:9px;
+  font-weight:bold;
+}
+
+.available{
+  background:#eaf8f0;
+  color:var(--green);
+}
+
+.low{
+  background:#fff5e5;
+  color:var(--orange);
+}
+
+.empty{
+  background:#fff0f3;
+  color:var(--red);
+}
+
+.product-footer{
+  margin-top:13px;
+  padding-top:11px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.view{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.available-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  display:inline-block;
+  margin-right:4px;
+}
+
+.low-dot{
+  background:var(--orange);
+}
+
+.empty-dot{
+  background:var(--red);
+}
+
+
+/* ================= EMPTY ================= */
+
+.no-product{
+  grid-column:1/-1;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:15px;
+  text-align:center;
+  padding:60px 20px;
+  color:var(--muted);
+}
+
+.no-product div{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer{
+  text-align:center;
+  padding:30px 10px 10px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1050px){
+
+  .products{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
+
+}
+
+@media(max-width:750px){
+
+  .header{
+    padding:0 16px;
+  }
+
+  .brand-text{
+    display:none;
+  }
+
+  .user-text{
+    display:none;
+  }
+
+  .page{
+    padding:20px 14px 40px;
+  }
+
+  .top{
+    align-items:flex-start;
+  }
+
+  .title h1{
+    font-size:22px;
+  }
+
+  .info{
+    grid-template-columns:1fr;
+  }
+
+  .products{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .product-image{
+    height:110px;
+    font-size:43px;
+  }
+
+  .product-body{
+    padding:11px;
+  }
+
+  .product-name{
+    font-size:12px;
+  }
+
+  .price{
+    font-size:13px;
+  }
+
+}
+
+@media(max-width:430px){
+
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-image{
+    height:95px;
+  }
+
+  .product-name{
+    min-height:auto;
+  }
+
+}
+
+
+/* ================= ACCESS ================= */
+
+.access-denied{
+  position:fixed;
+  inset:0;
+  background:#fff8fb;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+}
+
+.access-box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:35px;
+  width:380px;
+  max-width:90%;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.access-box .icon{
+  font-size:45px;
+  margin-bottom:15px;
+}
+
+.access-box h2{
+  margin-bottom:8px;
+}
+
+.access-box p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+  <div class="brand">
+
+    <div class="logo">
+      CS
+    </div>
+
+    <div class="brand-text">
+      <strong>Camila SweetRush</strong>
+      <span>CAKE · PASTRY · DESSERT</span>
+    </div>
+
+  </div>
+
+
+  <div class="user">
+
+    <div class="user-text">
+
+      <strong id="userName">
+        Konsumen
+      </strong>
+
+      <span>
+        Konsumen
+      </span>
+
+    </div>
+
+    <div
+      class="avatar"
+      id="avatar">
+      KO
+    </div>
+
+  </div>
+
+</header>
+
+
+<main class="page">
+
+
+  <div class="top">
+
+    <div class="title">
+
+      <h1>
+        Produk & Stok
+      </h1>
+
+      <p>
+        Pilih produk favorit Anda dari Camila SweetRush.
+      </p>
+
+    </div>
+
+
+    <button
+      class="logout"
+      onclick="logout()">
+
+      ⎋ Keluar
+
+    </button>
+
+  </div>
+
+
+  <section class="info">
+
+    <div class="info-card">
+
+      <div class="info-icon">
+        🍰
+      </div>
+
+      <div>
+
+        <small>
+          Total Produk
+        </small>
+
+        <strong id="totalProducts">
+          0
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="info-card">
+
+      <div class="info-icon">
+        🟢
+      </div>
+
+      <div>
+
+        <small>
+          Produk Tersedia
+        </small>
+
+        <strong id="availableProducts">
+          0
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="info-card">
+
+      <div class="info-icon">
+        📦
+      </div>
+
+      <div>
+
+        <small>
+          Total Stok
+        </small>
+
+        <strong id="totalStock">
+          0
+        </strong>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="toolbar">
+
+    <div class="search">
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
+      <input
+        id="search"
+        type="text"
+        placeholder="Cari produk..."
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <div class="categories">
+
+      <button
+        class="category active"
+        onclick="setCategory('Semua',this)">
+        Semua
+      </button>
+
+      <button
+        class="category"
+        onclick="setCategory('Cake',this)">
+        Cake
+      </button>
+
+      <button
+        class="category"
+        onclick="setCategory('Brownies',this)">
+        Brownies
+      </button>
+
+      <button
+        class="category"
+        onclick="setCategory('Donut',this)">
+        Donut
+      </button>
+
+      <button
+        class="category"
+        onclick="setCategory('Bread',this)">
+        Bread
+      </button>
+
+      <button
+        class="category"
+        onclick="setCategory('Dessert',this)">
+        Dessert
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section
+    class="products"
+    id="products">
+  </section>
+
+
+  <div class="footer">
+
+    Camila SweetRush · Sweet moments, happier people 💗
+
+  </div>
+
+</main>
+
+
+<div
+  class="access-denied"
+  id="accessDenied">
+
+  <div class="access-box">
+
+    <div class="icon">
+      🔒
+    </div>
+
+    <h2>
+      Akses Konsumen
+    </h2>
+
+    <p>
+      Halaman ini khusus untuk akun Konsumen.
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+const user =
+  localStorage.getItem("camila_user");
+
+const role =
+  localStorage.getItem("camila_role");
+
+
+/* Belum login */
+
+if(!user || !role){
+
+  window.location.replace("../login/");
+
+}
+
+
+/* Hanya Konsumen */
+
+if(role !== "Konsumen"){
+
+  document.getElementById(
+    "accessDenied"
+  ).style.display = "flex";
+
+  setTimeout(function(){
+
+    window.location.replace("../");
+
+  },1200);
+
+}
+
+
+/* User */
+
+document.getElementById(
+  "userName"
+).textContent = user || "Konsumen";
+
+
+document.getElementById(
+  "avatar"
+).textContent =
+  (user || "KO")
+  .trim()
+  .substring(0,2)
+  .toUpperCase();
+
+
+/* =====================================================
+   PRODUK
+===================================================== */
+
+const products = [
+
+  {
+    id:1,
+    name:"Chocolate Birthday Cake",
+    category:"Cake",
+    price:185000,
+    stock:12,
+    icon:"🎂"
+  },
+
+  {
+    id:2,
+    name:"Strawberry Cream Cake",
+    category:"Cake",
+    price:175000,
+    stock:8,
+    icon:"🍰"
+  },
+
+  {
+    id:3,
+    name:"Red Velvet Cake",
+    category:"Cake",
+    price:195000,
+    stock:5,
+    icon:"🎂"
+  },
+
+  {
+    id:4,
+    name:"Fudgy Chocolate Brownies",
+    category:"Brownies",
+    price:85000,
+    stock:14,
+    icon:"🍫"
+  },
+
+  {
+    id:5,
+    name:"Cheese Brownies",
+    category:"Brownies",
+    price:90000,
+    stock:7,
+    icon:"🍫"
+  },
+
+  {
+    id:6,
+    name:"Classic Glazed Donut",
+    category:"Donut",
+    price:18000,
+    stock:22,
+    icon:"🍩"
+  },
+
+  {
+    id:7,
+    name:"Chocolate Donut",
+    category:"Donut",
+    price:20000,
+    stock:18,
+    icon:"🍩"
+  },
+
+  {
+    id:8,
+    name:"Cinnamon Roll",
+    category:"Bread",
+    price:28000,
+    stock:9,
+    icon:"🥐"
+  },
+
+  {
+    id:9,
+    name:"Cheese Croissant",
+    category:"Bread",
+    price:32000,
+    stock:6,
+    icon:"🥐"
+  },
+
+  {
+    id:10,
+    name:"Premium Dessert Box",
+    category:"Dessert",
+    price:65000,
+    stock:4,
+    icon:"🍮"
+  },
+
+  {
+    id:11,
+    name:"Tiramisu Cup",
+    category:"Dessert",
+    price:45000,
+    stock:3,
+    icon:"🍮"
+  },
+
+  {
+    id:12,
+    name:"Mango Pudding",
+    category:"Dessert",
+    price:35000,
+    stock:10,
+    icon:"🥭"
+  }
+
+];
+
+
+let activeCategory = "Semua";
+
+
+/* =====================================================
+   RUPIAH
+===================================================== */
+
+function rupiah(value){
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(value);
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function stockStatus(stock){
+
+  if(stock <= 0){
+
+    return {
+      text:"Habis",
+      className:"empty",
+      dot:"empty-dot"
+    };
+
+  }
+
+
+  if(stock <= 5){
+
+    return {
+      text:"Hampir Habis",
+      className:"low",
+      dot:"low-dot"
+    };
+
+  }
+
+
+  return {
+    text:"Tersedia",
+    className:"available",
+    dot:""
+  };
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderProducts(){
+
+  const search =
+    document.getElementById(
+      "search"
+    ).value
+    .toLowerCase()
+    .trim();
+
+
+  const filtered =
+    products.filter(function(product){
+
+      const categoryMatch =
+        activeCategory === "Semua" ||
+        product.category === activeCategory;
+
+
+      const searchMatch =
+        product.name
+        .toLowerCase()
+        .includes(search);
+
+
+      return categoryMatch && searchMatch;
+
+    });
+
+
+  const container =
+    document.getElementById(
+      "products"
+    );
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML = `
+
+      <div class="no-product">
+
+        <div>🔎</div>
+
+        Produk tidak ditemukan.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered.map(function(product){
+
+      const status =
+        stockStatus(product.stock);
+
+
+      return `
+
+        <article class="product">
+
+          <div class="product-image">
+            ${product.icon}
+          </div>
+
+
+          <div class="product-body">
+
+            <div class="product-category">
+              ${product.category}
+            </div>
+
+            <div class="product-name">
+              ${product.name}
+            </div>
+
+            <div class="price">
+              ${rupiah(product.price)}
+            </div>
+
+
+            <div class="stock-row">
+
+              <span class="stock-number">
+                Stok: ${product.stock}
+              </span>
+
+              <span class="status ${status.className}">
+                ${status.text}
+              </span>
+
+            </div>
+
+
+            <div class="product-footer">
+
+              <span class="view">
+
+                <span
+                  class="available-dot ${status.dot}">
+                </span>
+
+                ${product.stock > 0
+                  ? "Siap dipesan"
+                  : "Tidak tersedia"}
+
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   STATISTIK
+===================================================== */
+
+function updateStats(){
+
+  const total =
+    products.length;
+
+
+  const available =
+    products.filter(
+      product => product.stock > 0
+    ).length;
+
+
+  const stock =
+    products.reduce(
+      (sum,product) =>
+        sum + product.stock,
+      0
+    );
+
+
+  document.getElementById(
+    "totalProducts"
+  ).textContent = total;
+
+
+  document.getElementById(
+    "availableProducts"
+  ).textContent = available;
+
+
+  document.getElementById(
+    "totalStock"
+  ).textContent = stock;
+
+}
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+function setCategory(category,button){
+
+  activeCategory =
+    category;
+
+
+  document
+    .querySelectorAll(".category")
+    .forEach(function(item){
+
+      item.classList.remove(
+        "active"
+      );
+
+    });
+
+
+  button.classList.add(
+    "active"
+  );
+
+
+  renderProducts();
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+  localStorage.removeItem(
+    "camila_user"
+  );
+
+  localStorage.removeItem(
+    "camila_role"
+  );
+
+  localStorage.removeItem(
+    "camila_remembered_user"
+  );
+
+
+  window.location.href =
+    "../login/";
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updateStats();
+
+renderProducts();
+
+</script>
+
+</body>
+</html>
