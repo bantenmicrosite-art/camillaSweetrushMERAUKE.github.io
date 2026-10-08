@@ -1334,14 +1334,14 @@ body{
       <button
         type="button"
         class="role-btn active"
-        data-role="User">
+        data-role="Admin"
 
         <span class="role-icon">
           ♙
         </span>
 
         <span>
-          User
+         Admin
         </span>
 
       </button>
@@ -1623,7 +1623,7 @@ body{
    ROLE
 ====================================== */
 
-let selectedRole = "User";
+let selectedRole = "Admin";
 
 const consumerNameGroup =
   document.getElementById("consumerNameGroup");
@@ -1696,7 +1696,7 @@ document
         this.classList.add("active");
 
 
-     let selectedRole = "User";
+     let selectedRole = "Admin";
 
 const consumerNameGroup =
   document.getElementById("consumerNameGroup");
@@ -1846,7 +1846,7 @@ function showToast(message){
 
 const remembered =
   localStorage.getItem(
-    "camila_remembered_user"
+    "camila_remembered_Admin"
   );
 
 
@@ -1955,12 +1955,12 @@ document
 
   /*
     Untuk Konsumen:
-    camila_user = Nama Konsumen
+    camila_Admin = Nama Konsumen
     camila_customer_phone = No HP
   */
 
   localStorage.setItem(
-    "camila_user",
+    "camila_Admin",
     customerName
   );
 
@@ -1977,12 +1977,12 @@ document
 }else{
 
   /*
-    Untuk User:
-    No HP tetap menjadi identitas user
+    Untuk Admin:
+    No HP tetap menjadi identitas Admin
   */
 
   localStorage.setItem(
-    "camila_user",
+    "camila_Admin",
     phoneNumber
   );
 
@@ -1997,14 +1997,14 @@ document
       if(remember){
 
         localStorage.setItem(
-          "camila_remembered_user",
+          "camila_remembered_Admin",
           phoneNumber
         );
 
       }else{
 
         localStorage.removeItem(
-          "camila_remembered_user"
+          "camila_remembered_Admin"
         );
 
       }
