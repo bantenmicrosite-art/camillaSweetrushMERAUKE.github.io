@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penjualan — Camila SweetRush</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --pink:#e85d8f;
+  --pink-dark:#c83f70;
+  --pink-soft:#fff1f6;
+  --pink-light:#fff8fb;
+  --text:#332b2f;
+  --muted:#8b7c83;
+  --border:#eee1e6;
+  --white:#ffffff;
+  --green:#38a169;
+  --red:#e05273;
+  --shadow:0 10px 30px rgba(180,80,120,.10);
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#faf7f8;
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  height:72px;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 30px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(10px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.brand-logo{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#f17ba5,#d9477b);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-size:17px;
+  box-shadow:0 8px 18px rgba(220,70,120,.22);
+}
+
+.brand-text strong{
+  display:block;
+  font-size:16px;
+  letter-spacing:.4px;
+}
+
+.brand-text span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+  letter-spacing:1px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.user-info{
+  text-align:right;
+}
+
+.user-info strong{
+  display:block;
+  font-size:13px;
+}
+
+.user-info span{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--pink-soft);
+  color:var(--pink-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* ================= PAGE ================= */
+
+.page{
+  max-width:1500px;
+  margin:auto;
+  padding:25px 30px 40px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.title-area h1{
+  font-size:25px;
+  margin-bottom:5px;
+}
+
+.title-area p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.back-btn{
+  border:1px solid var(--border);
+  background:#fff;
+  color:#5e5559;
+  padding:11px 16px;
+  border-radius:11px;
+  font-size:13px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.back-btn:hover{
+  border-color:#e9aac0;
+  color:var(--pink-dark);
+  transform:translateY(-1px);
+}
+
+/* ================= LAYOUT ================= */
+
+.pos-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(350px,.8fr);
+  gap:22px;
+  align-items:start;
+}
+
+.panel{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+.panel-header{
+  padding:19px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.panel-header h2{
+  font-size:16px;
+}
+
+.panel-header span{
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* ================= PRODUCTS ================= */
+
+.product-section{
+  padding:20px;
+}
+
+.search-box{
+  position:relative;
+  margin-bottom:18px;
+}
+
+.search-box input{
+  width:100%;
+  height:45px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+  padding:0 16px 0 43px;
+  background:#fff;
+  font-size:13px;
+  transition:.2s;
+}
+
+.search-box input:focus{
+  border-color:#e8a0b8;
+  box-shadow:0 0 0 4px rgba(232,93,143,.07);
+}
+
+.search-icon{
+  position:absolute;
+  left:16px;
+  top:13px;
+  color:#a6949d;
+}
+
+.category-bar{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  margin-bottom:18px;
+}
+
+.category-btn{
+  border:1px solid var(--border);
+  background:#fff;
+  color:#766b70;
+  padding:8px 13px;
+  border-radius:20px;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.category-btn.active,
+.category-btn:hover{
+  background:var(--pink);
+  color:#fff;
+  border-color:var(--pink);
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.product-card{
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:12px;
+  background:#fff;
+  transition:.2s;
+  position:relative;
+  overflow:hidden;
+}
+
+.product-card:hover{
+  transform:translateY(-3px);
+  border-color:#edb2c6;
+  box-shadow:0 8px 20px rgba(200,70,120,.08);
+}
+
+.product-image{
+  height:115px;
+  border-radius:11px;
+  background:linear-gradient(135deg,#fff0f5,#fce0e9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  margin-bottom:11px;
+}
+
+.product-name{
+  font-size:13px;
+  font-weight:bold;
+  line-height:1.3;
+  margin-bottom:5px;
+}
+
+.product-category{
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:9px;
+}
+
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+}
+
+.product-price{
+  color:var(--pink-dark);
+  font-size:12px;
+  font-weight:bold;
+}
+
+.add-btn{
+  border:0;
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  background:var(--pink);
+  color:#fff;
+  font-size:18px;
+  line-height:30px;
+}
+
+.add-btn:hover{
+  background:var(--pink-dark);
+}
+
+.no-product{
+  grid-column:1/-1;
+  text-align:center;
+  padding:40px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ================= CART ================= */
+
+.cart-panel{
+  position:sticky;
+  top:94px;
+}
+
+.cart-body{
+  padding:18px;
+}
+
+.transaction-info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.info-box{
+  background:#faf7f8;
+  border-radius:11px;
+  padding:10px 12px;
+}
+
+.info-box small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:4px;
+}
+
+.info-box strong{
+  font-size:11px;
+}
+
+.cart-items{
+  max-height:330px;
+  overflow-y:auto;
+  margin-bottom:15px;
+}
+
+.empty-cart{
+  text-align:center;
+  padding:40px 15px;
+  color:var(--muted);
+}
+
+.empty-cart .icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.empty-cart p{
+  font-size:12px;
+}
+
+.cart-item{
+  display:grid;
+  grid-template-columns:43px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:11px 0;
+  border-bottom:1px solid #f3e9ed;
+}
+
+.cart-item-image{
+  width:43px;
+  height:43px;
+  border-radius:10px;
+  background:var(--pink-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+}
+
+.cart-item-name{
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.cart-item-price{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:6px;
+}
+
+.qty button{
+  width:22px;
+  height:22px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:#fff;
+  font-size:13px;
+}
+
+.qty span{
+  min-width:14px;
+  text-align:center;
+  font-size:11px;
+}
+
+.cart-item-right{
+  text-align:right;
+}
+
+.item-total{
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.remove-btn{
+  border:0;
+  background:none;
+  color:#c99aa9;
+  font-size:10px;
+}
+
+.remove-btn:hover{
+  color:var(--red);
+}
+
+/* ================= TOTAL ================= */
+
+.summary{
+  border-top:1px dashed #e5d8de;
+  padding-top:15px;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+  font-size:12px;
+}
+
+.summary-row span:first-child{
+  color:var(--muted);
+}
+
+.summary-row strong{
+  font-size:12px;
+}
+
+.discount-input{
+  width:100%;
+  height:38px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:0 10px;
+  outline:none;
+  font-size:12px;
+  text-align:right;
+}
+
+.discount-input:focus{
+  border-color:#e8a0b8;
+}
+
+.total-row{
+  padding:13px 0;
+  border-top:1px solid var(--border);
+  margin-top:4px;
+}
+
+.total-row span:first-child{
+  color:#4f454a !important;
+  font-weight:bold;
+}
+
+.total-row strong{
+  color:var(--pink-dark);
+  font-size:20px;
+}
+
+.payment-area{
+  margin-top:4px;
+}
+
+.payment-label{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.payment-input{
+  width:100%;
+  height:45px;
+  border:1px solid #e8a4ba;
+  border-radius:11px;
+  padding:0 13px;
+  outline:none;
+  font-size:14px;
+  font-weight:bold;
+  color:#493c42;
+  text-align:right;
+}
+
+.change-box{
+  background:#f0faf4;
+  border:1px solid #cdebd8;
+  border-radius:11px;
+  padding:12px;
+  margin-top:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.change-box span{
+  color:#5e7d69;
+  font-size:11px;
+}
+
+.change-box strong{
+  color:var(--green);
+  font-size:15px;
+}
+
+.change-box.insufficient{
+  background:#fff3f5;
+  border-color:#f2ccd5;
+}
+
+.change-box.insufficient span,
+.change-box.insufficient strong{
+  color:var(--red);
+}
+
+.action-buttons{
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:9px;
+  margin-top:14px;
+}
+
+.clear-btn,
+.pay-btn{
+  height:44px;
+  border-radius:11px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.clear-btn{
+  border:1px solid var(--border);
+  background:#fff;
+  color:#766b70;
+}
+
+.clear-btn:hover{
+  background:#faf5f7;
+}
+
+.pay-btn{
+  border:0;
+  background:linear-gradient(135deg,#ed6d9b,#d74779);
+  color:#fff;
+  box-shadow:0 7px 15px rgba(215,71,121,.2);
+}
+
+.pay-btn:hover{
+  transform:translateY(-1px);
+}
+
+.pay-btn:disabled{
+  background:#ddd3d7;
+  box-shadow:none;
+  cursor:not-allowed;
+}
+
+/* ================= RECEIPT MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(45,30,37,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.receipt{
+  width:380px;
+  max-width:100%;
+  background:#fff;
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
+
+.receipt-head{
+  text-align:center;
+  padding-bottom:15px;
+  border-bottom:1px dashed #ddd;
+}
+
+.receipt-head h2{
+  font-size:19px;
+  color:var(--pink-dark);
+}
+
+.receipt-head p{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.receipt-meta{
+  padding:12px 0;
+  font-size:10px;
+  color:#756970;
+  line-height:1.8;
+}
+
+.receipt-line{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:10px;
+  padding:5px 0;
+}
+
+.receipt-total{
+  border-top:1px dashed #ddd;
+  margin-top:8px;
+  padding-top:10px;
+}
+
+.receipt-total .receipt-line{
+  font-weight:bold;
+}
+
+.receipt-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:18px;
+}
+
+.receipt-actions button{
+  height:40px;
+  border-radius:10px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.close-receipt{
+  border:1px solid var(--border);
+  background:#fff;
+}
+
+.print-receipt{
+  border:0;
+  background:var(--pink);
+  color:#fff;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  background:#332b2f;
+  color:#fff;
+  padding:13px 17px;
+  border-radius:11px;
+  font-size:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
+  z-index:200;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+  .pos-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cart-panel{
+    position:relative;
+    top:0;
+  }
+
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:750px){
+  .header{
+    padding:0 16px;
+  }
+
+  .brand-text{
+    display:none;
+  }
+
+  .user-info{
+    display:none;
+  }
+
+  .page{
+    padding:18px 14px 30px;
+  }
+
+  .topbar{
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .title-area h1{
+    font-size:21px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-image{
+    height:100px;
+  }
+
+  .product-section{
+    padding:14px;
+  }
+
+  .cart-body{
+    padding:14px;
+  }
+}
+
+@media(max-width:430px){
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-image{
+    height:85px;
+    font-size:37px;
+  }
+
+  .product-name{
+    font-size:11px;
+  }
+
+  .product-price{
+    font-size:10px;
+  }
+
+  .add-btn{
+    width:27px;
+    height:27px;
+  }
+}
+
+/* ================= PRINT ================= */
+
+@media print{
+  body *{
+    visibility:hidden;
+  }
+
+  .receipt,
+  .receipt *{
+    visibility:visible;
+  }
+
+  .receipt{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    box-shadow:none;
+  }
+
+  .receipt-actions{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+  <div class="brand">
+    <div class="brand-logo">CS</div>
+
+    <div class="brand-text">
+      <strong>Camila SweetRush</strong>
+      <span>CAKE · PASTRY · DESSERT</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+
+    <div class="user-info">
+      <strong id="userName">User</strong>
+      <span id="userRole">Kasir</span>
+    </div>
+
+    <div class="avatar" id="avatar">US</div>
+
+  </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="page">
+
+  <div class="topbar">
+
+    <div class="title-area">
+      <h1>Penjualan</h1>
+      <p>Point of Sale · Camila SweetRush</p>
+    </div>
+
+    <button class="back-btn" onclick="backToDashboard()">
+      ← Kembali ke Dashboard
+    </button>
+
+  </div>
+
+
+  <div class="pos-grid">
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="panel">
+
+      <div class="panel-header">
+        <h2>Daftar Produk</h2>
+        <span id="productCount">0 Produk</span>
+      </div>
+
+      <div class="product-section">
+
+        <div class="search-box">
+
+          <span class="search-icon">⌕</span>
+
+          <input
+            type="text"
+            id="searchProduct"
+            placeholder="Cari nama produk..."
+            autocomplete="off"
+          >
+
+        </div>
+
+
+        <div class="category-bar">
+
+          <button
+            class="category-btn active"
+            data-category="Semua"
+            onclick="filterCategory('Semua',this)">
+            Semua
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="Cake"
+            onclick="filterCategory('Cake',this)">
+            Cake
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="Brownies"
+            onclick="filterCategory('Brownies',this)">
+            Brownies
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="Donut"
+            onclick="filterCategory('Donut',this)">
+            Donut
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="Bread"
+            onclick="filterCategory('Bread',this)">
+            Bread
+          </button>
+
+          <button
+            class="category-btn"
+            data-category="Dessert"
+            onclick="filterCategory('Dessert',this)">
+            Dessert
+          </button>
+
+        </div>
+
+
+        <div class="products" id="products"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CART ================= -->
+
+    <section class="panel cart-panel">
+
+      <div class="panel-header">
+        <h2>Keranjang</h2>
+        <span id="cartCount">0 Item</span>
+      </div>
+
+      <div class="cart-body">
+
+
+        <div class="transaction-info">
+
+          <div class="info-box">
+            <small>No. Transaksi</small>
+            <strong id="transactionNumber">-</strong>
+          </div>
+
+          <div class="info-box">
+            <small>Tanggal</small>
+            <strong id="transactionDate">-</strong>
+          </div>
+
+        </div>
+
+
+        <div class="cart-items" id="cartItems">
+
+          <div class="empty-cart">
+            <div class="icon">🛒</div>
+            <p>Keranjang masih kosong</p>
+          </div>
+
+        </div>
+
+
+        <div class="summary">
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="subtotal">Rp 0</strong>
+          </div>
+
+
+          <div class="summary-row">
+
+            <span>Diskon</span>
+
+            <input
+              class="discount-input"
+              id="discount"
+              type="number"
+              min="0"
+              value="0"
+              placeholder="0"
+              oninput="updateSummary()"
+            >
+
+          </div>
+
+
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <strong id="total">Rp 0</strong>
+          </div>
+
+
+          <div class="payment-area">
+
+            <label class="payment-label">
+              Uang Dibayar
+            </label>
+
+            <input
+              class="payment-input"
+              id="payment"
+              type="number"
+              min="0"
+              placeholder="Rp 0"
+              oninput="updateSummary()"
+            >
+
+
+            <div
+              class="change-box"
+              id="changeBox">
+
+              <span id="changeLabel">
+                Kembalian
+              </span>
+
+              <strong id="change">
+                Rp 0
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="action-buttons">
+
+            <button
+              class="clear-btn"
+              onclick="clearCart()">
+              Reset
+            </button>
+
+            <button
+              class="pay-btn"
+              id="payBtn"
+              onclick="completeTransaction()"
+              disabled>
+              ✓ Selesaikan Transaksi
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+
+<!-- ================= RECEIPT MODAL ================= -->
+
+<div class="modal" id="receiptModal">
+
+  <div class="receipt">
+
+    <div class="receipt-head">
+      <h2>Camila SweetRush</h2>
+      <p>CAKE · PASTRY · DESSERT</p>
+      <p>Terima kasih telah berbelanja 💗</p>
+    </div>
+
+    <div class="receipt-meta" id="receiptMeta"></div>
+
+    <div id="receiptItems"></div>
+
+    <div class="receipt-total">
+
+      <div class="receipt-line">
+        <span>Subtotal</span>
+        <strong id="receiptSubtotal">Rp 0</strong>
+      </div>
+
+      <div class="receipt-line">
+        <span>Diskon</span>
+        <strong id="receiptDiscount">Rp 0</strong>
+      </div>
+
+      <div class="receipt-line">
+        <span>Total</span>
+        <strong id="receiptTotal">Rp 0</strong>
+      </div>
+
+      <div class="receipt-line">
+        <span>Dibayar</span>
+        <strong id="receiptPayment">Rp 0</strong>
+      </div>
+
+      <div class="receipt-line">
+        <span>Kembalian</span>
+        <strong id="receiptChange">Rp 0</strong>
+      </div>
+
+    </div>
+
+
+    <div class="receipt-actions">
+
+      <button
+        class="close-receipt"
+        onclick="closeReceipt()">
+        Tutup
+      </button>
+
+      <button
+        class="print-receipt"
+        onclick="window.print()">
+        🖨 Cetak Struk
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================================================
+   LOGIN / ROLE
+========================================================= */
+
+const user = localStorage.getItem("camila_user");
+const role = localStorage.getItem("camila_role");
+
+
+/* Jika belum login */
+
+if (!user || !role) {
+
+  window.location.replace("../login/");
+
+}
+
+
+/* Hanya Admin dan Kasir */
+
+if (role !== "Admin" && role !== "Kasir") {
+
+  alert("Akses Penjualan hanya tersedia untuk Admin dan Kasir.");
+
+  window.location.replace("../");
+
+}
+
+
+/* Tampilkan user */
+
+document.getElementById("userName").textContent = user || "User";
+document.getElementById("userRole").textContent = role || "Kasir";
+
+
+/* Avatar */
+
+document.getElementById("avatar").textContent =
+  (user || "US")
+  .trim()
+  .substring(0,2)
+  .toUpperCase();
+
+
+/* =========================================================
+   DATA PRODUK
+========================================================= */
+
+const products = [
+
+  {
+    id:1,
+    name:"Chocolate Birthday Cake",
+    category:"Cake",
+    price:185000,
+    icon:"🎂"
+  },
+
+  {
+    id:2,
+    name:"Strawberry Cream Cake",
+    category:"Cake",
+    price:175000,
+    icon:"🍰"
+  },
+
+  {
+    id:3,
+    name:"Red Velvet Cake",
+    category:"Cake",
+    price:195000,
+    icon:"🎂"
+  },
+
+  {
+    id:4,
+    name:"Fudgy Chocolate Brownies",
+    category:"Brownies",
+    price:85000,
+    icon:"🍫"
+  },
+
+  {
+    id:5,
+    name:"Cheese Brownies",
+    category:"Brownies",
+    price:90000,
+    icon:"🍫"
+  },
+
+  {
+    id:6,
+    name:"Classic Glazed Donut",
+    category:"Donut",
+    price:18000,
+    icon:"🍩"
+  },
+
+  {
+    id:7,
+    name:"Chocolate Donut",
+    category:"Donut",
+    price:20000,
+    icon:"🍩"
+  },
+
+  {
+    id:8,
+    name:"Cinnamon Roll",
+    category:"Bread",
+    price:28000,
+    icon:"🥐"
+  },
+
+  {
+    id:9,
+    name:"Cheese Croissant",
+    category:"Bread",
+    price:32000,
+    icon:"🥐"
+  },
+
+  {
+    id:10,
+    name:"Premium Dessert Box",
+    category:"Dessert",
+    price:65000,
+    icon:"🍮"
+  },
+
+  {
+    id:11,
+    name:"Tiramisu Cup",
+    category:"Dessert",
+    price:45000,
+    icon:"🍮"
+  },
+
+  {
+    id:12,
+    name:"Mango Pudding",
+    category:"Dessert",
+    price:35000,
+    icon:"🥭"
+  }
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let cart = [];
+
+let activeCategory = "Semua";
+
+
+/* =========================================================
+   FORMAT RUPIAH
+========================================================= */
+
+function rupiah(number){
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(number || 0);
+
+}
+
+
+/* =========================================================
+   NOMOR TRANSAKSI
+========================================================= */
+
+function generateTransactionNumber(){
+
+  const now = new Date();
+
+  const year = now.getFullYear();
+
+  const month =
+    String(now.getMonth()+1).padStart(2,"0");
+
+  const day =
+    String(now.getDate()).padStart(2,"0");
+
+  const time =
+    String(now.getHours()).padStart(2,"0") +
+    String(now.getMinutes()).padStart(2,"0") +
+    String(now.getSeconds()).padStart(2,"0");
+
+  return "CS-" + year + month + day + "-" + time;
+
+}
+
+
+document.getElementById("transactionNumber")
+  .textContent = generateTransactionNumber();
+
+
+/* =========================================================
+   TANGGAL
+========================================================= */
+
+function updateDate(){
+
+  const now = new Date();
+
+  document.getElementById("transactionDate")
+    .textContent =
+      now.toLocaleDateString(
+        "id-ID",
+        {
+          day:"2-digit",
+          month:"short",
+          year:"numeric"
+        }
+      );
+
+}
+
+updateDate();
+
+
+/* =========================================================
+   RENDER PRODUK
+========================================================= */
+
+function renderProducts(){
+
+  const container =
+    document.getElementById("products");
+
+  const search =
+    document.getElementById("searchProduct")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    products.filter(function(product){
+
+      const categoryMatch =
+        activeCategory === "Semua" ||
+        product.category === activeCategory;
+
+      const searchMatch =
+        product.name.toLowerCase()
+          .includes(search);
+
+      return categoryMatch && searchMatch;
+
+    });
+
+
+  document.getElementById("productCount")
+    .textContent =
+      filtered.length + " Produk";
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML = `
+      <div class="no-product">
+        Produk tidak ditemukan.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered.map(function(product){
+
+      return `
+
+        <div class="product-card">
+
+          <div class="product-image">
+            ${product.icon}
+          </div>
+
+          <div class="product-name">
+            ${product.name}
+          </div>
+
+          <div class="product-category">
+            ${product.category}
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="product-price">
+              ${rupiah(product.price)}
+            </div>
+
+            <button
+              class="add-btn"
+              onclick="addToCart(${product.id})">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+renderProducts();
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document.getElementById("searchProduct")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+function filterCategory(category, button){
+
+  activeCategory = category;
+
+  document
+    .querySelectorAll(".category-btn")
+    .forEach(function(btn){
+
+      btn.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
+
+  renderProducts();
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function addToCart(productId){
+
+  const product =
+    products.find(function(item){
+
+      return item.id === productId;
+
+    });
+
+
+  if(!product) return;
+
+
+  const existing =
+    cart.find(function(item){
+
+      return item.id === productId;
+
+    });
+
+
+  if(existing){
+
+    existing.qty++;
+
+  }else{
+
+    cart.push({
+      ...product,
+      qty:1
+    });
+
+  }
+
+
+  renderCart();
+
+  showToast(
+    product.name + " ditambahkan"
+  );
+
+}
+
+
+/* =========================================================
+   CHANGE QTY
+========================================================= */
+
+function changeQty(productId, amount){
+
+  const item =
+    cart.find(function(product){
+
+      return product.id === productId;
+
+    });
+
+
+  if(!item) return;
+
+
+  item.qty += amount;
+
+
+  if(item.qty <= 0){
+
+    cart =
+      cart.filter(function(product){
+
+        return product.id !== productId;
+
+      });
+
+  }
+
+
+  renderCart();
+
+}
+
+
+/* =========================================================
+   REMOVE ITEM
+========================================================= */
+
+function removeFromCart(productId){
+
+  cart =
+    cart.filter(function(item){
+
+      return item.id !== productId;
+
+    });
+
+
+  renderCart();
+
+}
+
+
+/* =========================================================
+   RENDER CART
+========================================================= */
+
+function renderCart(){
+
+  const container =
+    document.getElementById("cartItems");
+
+
+  const totalItems =
+    cart.reduce(
+      (sum,item) => sum + item.qty,
+      0
+    );
+
+
+  document.getElementById("cartCount")
+    .textContent =
+      totalItems + " Item";
+
+
+  if(cart.length === 0){
+
+    container.innerHTML = `
+
+      <div class="empty-cart">
+
+        <div class="icon">🛒</div>
+
+        <p>Keranjang masih kosong</p>
+
+      </div>
+
+    `;
+
+    updateSummary();
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    cart.map(function(item){
+
+      return `
+
+        <div class="cart-item">
+
+          <div class="cart-item-image">
+            ${item.icon}
+          </div>
+
+          <div>
+
+            <div class="cart-item-name">
+              ${item.name}
+            </div>
+
+            <div class="cart-item-price">
+              ${rupiah(item.price)}
+            </div>
+
+            <div class="qty">
+
+              <button
+                onclick="changeQty(${item.id},-1)">
+                −
+              </button>
+
+              <span>
+                ${item.qty}
+              </span>
+
+              <button
+                onclick="changeQty(${item.id},1)">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="cart-item-right">
+
+            <div class="item-total">
+              ${rupiah(item.price * item.qty)}
+            </div>
+
+            <button
+              class="remove-btn"
+              onclick="removeFromCart(${item.id})">
+              Hapus
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  updateSummary();
+
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+function getSubtotal(){
+
+  return cart.reduce(
+    function(sum,item){
+
+      return sum + item.price * item.qty;
+
+    },
+    0
+  );
+
+}
+
+
+function updateSummary(){
+
+  const subtotal =
+    getSubtotal();
+
+
+  let discount =
+    Number(
+      document.getElementById("discount").value
+    ) || 0;
+
+
+  if(discount > subtotal){
+
+    discount = subtotal;
+
+    document.getElementById("discount").value =
+      discount;
+
+  }
+
+
+  const total =
+    Math.max(
+      0,
+      subtotal - discount
+    );
+
+
+  const payment =
+    Number(
+      document.getElementById("payment").value
+    ) || 0;
+
+
+  const change =
+    payment - total;
+
+
+  document.getElementById("subtotal")
+    .textContent =
+      rupiah(subtotal);
+
+
+  document.getElementById("total")
+    .textContent =
+      rupiah(total);
+
+
+  const changeBox =
+    document.getElementById("changeBox");
+
+  const changeLabel =
+    document.getElementById("changeLabel");
+
+
+  if(change >= 0){
+
+    changeBox.classList.remove("insufficient");
+
+    changeLabel.textContent =
+      "Kembalian";
+
+    document.getElementById("change")
+      .textContent =
+        rupiah(change);
+
+  }else{
+
+    changeBox.classList.add("insufficient");
+
+    changeLabel.textContent =
+      "Uang Kurang";
+
+    document.getElementById("change")
+      .textContent =
+        rupiah(Math.abs(change));
+
+  }
+
+
+  const payBtn =
+    document.getElementById("payBtn");
+
+
+  payBtn.disabled =
+    cart.length === 0 ||
+    total <= 0 ||
+    payment < total;
+
+}
+
+
+/* =========================================================
+   CLEAR CART
+========================================================= */
+
+function clearCart(){
+
+  if(cart.length === 0){
+
+    return;
+
+  }
+
+
+  const confirmClear =
+    confirm(
+      "Kosongkan semua produk dari keranjang?"
+    );
+
+
+  if(!confirmClear){
+
+    return;
+
+  }
+
+
+  cart = [];
+
+
+  document.getElementById("discount")
+    .value = 0;
+
+  document.getElementById("payment")
+    .value = "";
+
+
+  renderCart();
+
+  showToast("Keranjang dikosongkan");
+
+}
+
+
+/* =========================================================
+   COMPLETE TRANSACTION
+========================================================= */
+
+function completeTransaction(){
+
+  const subtotal =
+    getSubtotal();
+
+
+  const discount =
+    Number(
+      document.getElementById("discount").value
+    ) || 0;
+
+
+  const total =
+    Math.max(
+      0,
+      subtotal - discount
+    );
+
+
+  const payment =
+    Number(
+      document.getElementById("payment").value
+    ) || 0;
+
+
+  if(cart.length === 0){
+
+    showToast(
+      "Keranjang masih kosong"
+    );
+
+    return;
+
+  }
+
+
+  if(payment < total){
+
+    showToast(
+      "Uang pembayaran belum cukup"
+    );
+
+    return;
+
+  }
+
+
+  const change =
+    payment - total;
+
+
+  const transaction = {
+
+    number:
+      document.getElementById("transactionNumber")
+        .textContent,
+
+    date:
+      new Date().toISOString(),
+
+    cashier:
+      user,
+
+    role:
+      role,
+
+    items:
+      cart.map(function(item){
+
+        return {
+
+          id:item.id,
+
+          name:item.name,
+
+          price:item.price,
+
+          qty:item.qty,
+
+          total:item.price * item.qty
+
+        };
+
+      }),
+
+    subtotal:
+      subtotal,
+
+    discount:
+      discount,
+
+    total:
+      total,
+
+    payment:
+      payment,
+
+    change:
+      change
+
+  };
+
+
+  /* Simpan riwayat transaksi */
+
+  const history =
+    JSON.parse(
+      localStorage.getItem(
+        "camila_transactions"
+      ) || "[]"
+    );
+
+
+  history.push(transaction);
+
+
+  localStorage.setItem(
+    "camila_transactions",
+    JSON.stringify(history)
+  );
+
+
+  /* Tampilkan struk */
+
+  showReceipt(transaction);
+
+
+  /* Reset transaksi */
+
+  cart = [];
+
+
+  document.getElementById("discount")
+    .value = 0;
+
+  document.getElementById("payment")
+    .value = "";
+
+
+  document.getElementById("transactionNumber")
+    .textContent =
+      generateTransactionNumber();
+
+
+  updateDate();
+
+  renderCart();
+
+}
+
+
+/* =========================================================
+   RECEIPT
+========================================================= */
+
+function showReceipt(transaction){
+
+  const date =
+    new Date(transaction.date);
+
+
+  document.getElementById("receiptMeta")
+    .innerHTML = `
+
+      <div>No. Transaksi :
+        <strong>${transaction.number}</strong>
+      </div>
+
+      <div>Tanggal :
+        ${date.toLocaleString("id-ID")}
+      </div>
+
+      <div>Kasir :
+        ${transaction.cashier}
+      </div>
+
+    `;
+
+
+  document.getElementById("receiptItems")
+    .innerHTML =
+      transaction.items
+      .map(function(item){
+
+        return `
+
+          <div class="receipt-line">
+
+            <span>
+              ${item.name}
+              ×${item.qty}
+            </span>
+
+            <strong>
+              ${rupiah(item.total)}
+            </strong>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+
+  document.getElementById("receiptSubtotal")
+    .textContent =
+      rupiah(transaction.subtotal);
+
+
+  document.getElementById("receiptDiscount")
+    .textContent =
+      rupiah(transaction.discount);
+
+
+  document.getElementById("receiptTotal")
+    .textContent =
+      rupiah(transaction.total);
+
+
+  document.getElementById("receiptPayment")
+    .textContent =
+      rupiah(transaction.payment);
+
+
+  document.getElementById("receiptChange")
+    .textContent =
+      rupiah(transaction.change);
+
+
+  document.getElementById("receiptModal")
+    .classList.add("show");
+
+}
+
+
+/* =========================================================
+   CLOSE RECEIPT
+========================================================= */
+
+function closeReceipt(){
+
+  document.getElementById("receiptModal")
+    .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   BACK TO DASHBOARD
+========================================================= */
+
+function backToDashboard(){
+
+  window.location.href = "../";
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add("show");
+
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2200);
+
+}
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+renderCart();
+
+updateSummary();
+
+</script>
+
+</body>
+</html>
