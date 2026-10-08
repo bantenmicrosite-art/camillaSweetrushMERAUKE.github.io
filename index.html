@@ -1312,6 +1312,85 @@ document
   });
 
 </script>
+  <script>
+(function () {
+  const user = localStorage.getItem("camila_user");
+  const role = localStorage.getItem("camila_role");
+
+  /* Jika belum login, kembali ke halaman login */
+  if (!user || !role) {
+    window.location.replace("./login/");
+    return;
+  }
+
+  /* Ambil elemen user di dashboard */
+  const userName = document.querySelector(".userbox b");
+  const userRole = document.querySelector(".userbox span");
+  const avatar = document.querySelector(".userbox .avatar");
+  const welcome = document.querySelector(".hero h2");
+  const userBox = document.querySelector(".userbox");
+
+  /* Tampilkan nama pengguna */
+  if (userName) {
+    userName.textContent = user;
+  }
+
+  /* Tampilkan role */
+  if (userRole) {
+    userRole.textContent = role;
+  }
+
+  /* Buat avatar dari 2 huruf pertama nama */
+  if (avatar) {
+    avatar.textContent = user
+      .trim()
+      .substring(0, 2)
+      .toUpperCase();
+  }
+
+  /* Ubah sapaan dashboard */
+  if (welcome) {
+    welcome.textContent =
+      "Selamat Datang, " + user + " 👋";
+  }
+
+  /* Tambahkan tombol Logout */
+  if (userBox && !document.getElementById("camilaLogout")) {
+
+    const logout = document.createElement("button");
+
+    logout.id = "camilaLogout";
+    logout.type = "button";
+    logout.textContent = "⎋";
+    logout.title = "Keluar";
+
+    logout.style.cssText = `
+      margin-left:auto;
+      width:34px;
+      height:34px;
+      border:1px solid #eee5dd;
+      border-radius:9px;
+      background:#fff;
+      color:#81766f;
+      cursor:pointer;
+      font-size:17px;
+    `;
+
+    logout.addEventListener("click", function () {
+
+      localStorage.removeItem("camila_user");
+      localStorage.removeItem("camila_role");
+      localStorage.removeItem("camila_remembered_user");
+
+      window.location.href = "./login/";
+
+    });
+
+    userBox.appendChild(logout);
+  }
+
+})();
+</script>
 
 </body>
 </html>
