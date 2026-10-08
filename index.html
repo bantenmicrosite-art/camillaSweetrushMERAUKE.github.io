@@ -1391,6 +1391,69 @@ document
 
 })();
 </script>
+<script>
+(function () {
 
+  const role = localStorage.getItem("camila_role") || "Konsumen";
+
+  const access = {
+
+    Admin: [
+      "Dashboard",
+      "Penjualan",
+      "Produk",
+      "Kategori",
+      "Stok",
+      "Pelanggan",
+      "Pesanan Online",
+      "Laporan",
+      "Pengguna",
+      "Pengaturan"
+    ],
+
+    Kasir: [
+      "Dashboard",
+      "Penjualan",
+      "Produk",
+      "Stok",
+      "Pelanggan",
+      "Pesanan Online"
+    ],
+
+    Owner: [
+      "Dashboard",
+      "Penjualan",
+      "Produk",
+      "Stok",
+      "Pelanggan",
+      "Pesanan Online",
+      "Laporan"
+    ],
+
+    Konsumen: [
+      "Dashboard",
+      "Pesanan Online"
+    ]
+
+  };
+
+  const allowed = access[role] || access.Konsumen;
+
+  document.querySelectorAll(".nav button").forEach(function (button) {
+
+    const spans = button.querySelectorAll("span");
+
+    if (spans.length < 2) return;
+
+    const menuName = spans[1].textContent.trim();
+
+    if (!allowed.includes(menuName)) {
+      button.style.display = "none";
+    }
+
+  });
+
+})();
+</script>
 </body>
 </html>
