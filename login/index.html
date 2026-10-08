@@ -1,1622 +1,9 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#d85b82">
-
-<title>Login | Camila SweetRush Merauke</title>
-
-<style>
-
-:root{
-  --pink:#df4f82;
-  --pink2:#ed719b;
-  --pink3:#c83c6e;
-  --pink-soft:#fff1f6;
-  --pink-line:#f1cbd8;
-  --ink:#292334;
-  --muted:#877b8c;
-  --white:#ffffff;
-  --shadow:0 25px 70px rgba(154,52,91,.18);
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html,
-body{
-  margin:0;
-  width:100%;
-  min-height:100%;
-}
-
-body{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-  font-family:
-    Inter,
-    Segoe UI,
-    Arial,
-    sans-serif;
-
-  background:
-    radial-gradient(
-      circle at 5% 10%,
-      #ffdbe8 0,
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 96% 90%,
-      #ffd4e4 0,
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #fff8fa,
-      #ffeef4
-    );
-
-  color:var(--ink);
-}
-
-
-/* ======================================
-   MAIN LOGIN CARD
-====================================== */
-
-.login-card{
-
-  width:min(1200px,100%);
-
-  min-height:720px;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(420px,1fr)
-    minmax(500px,1fr);
-
-  background:#fff;
-
-  border-radius:32px;
-
-  overflow:hidden;
-
-  box-shadow:var(--shadow);
-
-  position:relative;
-
-}
-
-
-/* ======================================
-   LEFT PINK PANEL
-====================================== */
-
-.brand-panel{
-
-  position:relative;
-
-  overflow:hidden;
-
-  padding:55px 60px;
-
-  color:white;
-
-  background:
-    radial-gradient(
-      circle at 80% 10%,
-      rgba(255,255,255,.16),
-      transparent 30%
-    ),
-    linear-gradient(
-      155deg,
-      #c9366c 0%,
-      #d94e80 45%,
-      #eb789e 100%
-    );
-
-}
-
-
-/* large decorative circles */
-
-.brand-panel:before{
-
-  content:"";
-
-  position:absolute;
-
-  width:500px;
-  height:500px;
-
-  border:1px solid
-    rgba(255,255,255,.18);
-
-  border-radius:50%;
-
-  top:-300px;
-  left:-230px;
-
-}
-
-.brand-panel:after{
-
-  content:"";
-
-  position:absolute;
-
-  width:460px;
-  height:460px;
-
-  border:1px solid
-    rgba(255,255,255,.16);
-
-  border-radius:50%;
-
-  right:-250px;
-  bottom:-230px;
-
-}
-
-
-/* ======================================
-   LOGO
-====================================== */
-
-.logo-box{
-
-  width:390px;
-  max-width:100%;
-
-  aspect-ratio:1/1;
-
-  margin:0 auto;
-
-  border-radius:50%;
-
-  background:
-
-    radial-gradient(
-      circle,
-      #fff8fa 0%,
-      #fff1f4 72%,
-      #f9d3df 73%,
-      #f9d3df 77%,
-      #fff5f7 78%,
-      #fff5f7 100%
-    );
-
-  border:5px solid
-    rgba(255,255,255,.78);
-
-  box-shadow:
-    0 18px 45px
-    rgba(105,29,59,.20),
-
-    inset 0 0 0 3px
-    rgba(231,91,129,.18);
-
-  position:relative;
-
-  z-index:3;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
-
-  overflow:hidden;
-
-}
-
-
-/*
-  Sementara logo dibuat menggunakan
-  typography + ornamen CSS.
-
-  Nanti bagian ini akan diganti
-  dengan logo PNG asli Anda.
-*/
-
-.logo-content{
-
-  color:#bd5570;
-
-  width:85%;
-
-}
-
-.logo-camila{
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-style:italic;
-
-  font-size:68px;
-
-  line-height:.9;
-
-  color:#d6507c;
-
-  margin-bottom:7px;
-
-}
-
-.logo-sweetrush{
-
-  font-family:Georgia,serif;
-
-  font-size:21px;
-
-  letter-spacing:4px;
-
-  color:#b87358;
-
-}
-
-.logo-line{
-
-  width:65%;
-
-  height:1px;
-
-  background:#d7b078;
-
-  margin:9px auto;
-
-}
-
-.logo-love{
-
-  font-family:Georgia,serif;
-
-  font-size:13px;
-
-  color:#a96757;
-
-  font-style:italic;
-
-}
-
-.logo-social{
-
-  margin-top:15px;
-
-  color:#d34c78;
-
-  font-size:11px;
-
-  line-height:1.8;
-
-}
-
-
-/* ======================================
-   FLOWERS
-====================================== */
-
-.flower{
-
-  position:absolute;
-
-  z-index:2;
-
-  pointer-events:none;
-
-}
-
-.flower.bottom-left{
-
-  left:-12px;
-
-  bottom:-12px;
-
-  font-size:115px;
-
-  transform:rotate(-12deg);
-
-  opacity:.88;
-
-}
-
-.flower.bottom-left:before{
-
-  content:"🌸";
-
-}
-
-.flower.bottom-left:after{
-
-  content:"🌿";
-
-  position:absolute;
-
-  left:60px;
-
-  bottom:15px;
-
-  font-size:75px;
-
-  transform:rotate(35deg);
-
-}
-
-
-.flower.small-one{
-
-  left:18px;
-
-  bottom:240px;
-
-  font-size:36px;
-
-  opacity:.8;
-
-}
-
-.flower.small-one:before{
-  content:"🌸";
-}
-
-.flower.small-two{
-
-  right:38px;
-
-  top:130px;
-
-  font-size:25px;
-
-}
-
-.flower.small-two:before{
-  content:"🌸";
-}
-
-
-/* ======================================
-   LOVE TEXT
-====================================== */
-
-.brand-message{
-
-  position:absolute;
-
-  left:60px;
-
-  bottom:100px;
-
-  z-index:4;
-
-  max-width:470px;
-
-}
-
-.brand-message h1{
-
-  margin:0;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:48px;
-
-  line-height:1.04;
-
-  font-weight:400;
-
-}
-
-.brand-message h1 span{
-
-  font-style:italic;
-
-}
-
-.heart{
-
-  font-size:54px;
-
-  margin-left:10px;
-
-}
-
-.brand-message .underline{
-
-  width:310px;
-
-  max-width:90%;
-
-  height:4px;
-
-  background:white;
-
-  border-radius:100%;
-
-  transform:
-    rotate(-5deg);
-
-  margin:18px 0 0 35px;
-
-  opacity:.9;
-
-}
-
-
-/* ======================================
-   RIGHT PANEL
-====================================== */
-
-.form-panel{
-
-  padding:
-    70px
-    62px
-    45px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  background:#fff;
-
-}
-
-
-.eyebrow{
-
-  color:#e22669;
-
-  font-size:14px;
-
-  font-weight:800;
-
-  letter-spacing:2px;
-
-  text-transform:uppercase;
-
-  margin-bottom:12px;
-
-}
-
-
-.form-panel h2{
-
-  margin:0;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:43px;
-
-  line-height:1.05;
-
-  color:#2c293c;
-
-}
-
-
-.form-panel .subtitle{
-
-  margin-top:12px;
-
-  color:#8b7d8e;
-
-  font-size:15px;
-
-}
-
-
-/* ======================================
-   ROLE BUTTON
-====================================== */
-
-.role-switch{
-
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:12px;
-
-  margin-top:34px;
-
-}
-
-.role-btn{
-
-  height:66px;
-
-  border-radius:15px;
-
-  border:1px solid #eadfe5;
-
-  background:white;
-
-  color:#3b3544;
-
-  font-size:15px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-  transition:.2s;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:10px;
-
-}
-
-.role-btn:hover{
-
-  border-color:#ec7ba2;
-
-  background:#fff7fa;
-
-}
-
-.role-btn.active{
-
-  border:
-    2px solid #f03479;
-
-  background:
-    linear-gradient(
-      180deg,
-      #fff5f8,
-      #fff0f5
-    );
-
-  color:#ed246b;
-
-  box-shadow:
-    0 8px 20px
-    rgba(235,48,108,.08);
-
-}
-
-.role-icon{
-
-  font-size:22px;
-
-}
-
-
-/* ======================================
-   FORM
-====================================== */
-
-.form-group{
-
-  margin-top:24px;
-
-}
-
-.form-group label{
-
-  display:block;
-
-  font-size:14px;
-
-  font-weight:800;
-
-  color:#29262e;
-
-  margin-bottom:9px;
-
-}
-
-.input-wrap{
-
-  position:relative;
-
-}
-
-.input-wrap input{
-
-  width:100%;
-
-  height:58px;
-
-  border:
-    1px solid #e7dfe4;
-
-  border-radius:13px;
-
-  outline:none;
-
-  padding:
-    0 50px 0 58px;
-
-  font-size:15px;
-
-  color:#332d38;
-
-  background:#fff;
-
-  transition:.2s;
-
-}
-
-.input-wrap input:focus{
-
-  border-color:#e85587;
-
-  box-shadow:
-    0 0 0 4px
-    rgba(232,85,135,.08);
-
-}
-
-.input-icon{
-
-  position:absolute;
-
-  left:20px;
-
-  top:50%;
-
-  transform:
-    translateY(-50%);
-
-  font-size:20px;
-
-  color:#393343;
-
-  pointer-events:none;
-
-}
-
-.password-toggle{
-
-  position:absolute;
-
-  right:14px;
-
-  top:50%;
-
-  transform:
-    translateY(-50%);
-
-  width:35px;
-
-  height:35px;
-
-  border:0;
-
-  background:transparent;
-
-  cursor:pointer;
-
-  color:#393343;
-
-  font-size:19px;
-
-}
-
-
-/* ======================================
-   INFO HP
-====================================== */
-
-.phone-info{
-
-  color:#8a7c8c;
-
-  font-size:13px;
-
-  line-height:1.55;
-
-  margin-top:8px;
-
-}
-
-
-/* ======================================
-   OPTIONS
-====================================== */
-
-.form-options{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  margin-top:19px;
-
-}
-
-.remember{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:9px;
-
-  color:#877b8c;
-
-  font-size:13px;
-
-  cursor:pointer;
-
-}
-
-.remember input{
-
-  width:17px;
-
-  height:17px;
-
-  accent-color:#e72e73;
-
-}
-
-.forgot{
-
-  border:0;
-
-  background:none;
-
-  color:#ed1e68;
-
-  font-size:13px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-}
-
-
-/* ======================================
-   LOGIN BUTTON
-====================================== */
-
-.login-btn{
-
-  width:100%;
-
-  height:62px;
-
-  margin-top:28px;
-
-  border:0;
-
-  border-radius:14px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #dc2470,
-      #ed6c98
-    );
-
-  color:white;
-
-  font-size:17px;
-
-  font-weight:800;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 14px 30px
-    rgba(218,36,112,.22);
-
-  transition:.2s;
-
-}
-
-.login-btn:hover{
-
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 17px 35px
-    rgba(218,36,112,.28);
-
-}
-
-
-/* ======================================
-   NOTE
-====================================== */
-
-.security-note{
-
-  margin-top:35px;
-
-  padding:16px 18px;
-
-  border:
-    1px dashed #f0b5c9;
-
-  border-radius:13px;
-
-  background:#fffafd;
-
-  color:#766c78;
-
-  font-size:12px;
-
-  line-height:1.55;
-
-  display:flex;
-
-  gap:12px;
-
-}
-
-.security-icon{
-
-  width:32px;
-
-  height:32px;
-
-  min-width:32px;
-
-  border-radius:9px;
-
-  background:#ffeaf2;
-
-  color:#ec2670;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:16px;
-
-}
-
-
-/* ======================================
-   MODAL
-====================================== */
-
-.modal{
-
-  display:none;
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(45,25,35,.42);
-
-  backdrop-filter:blur(6px);
-
-  z-index:100;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:20px;
-
-}
-
-.modal.show{
-
-  display:flex;
-
-}
-
-.modal-box{
-
-  width:min(430px,100%);
-
-  background:white;
-
-  border-radius:20px;
-
-  padding:28px;
-
-  box-shadow:
-    0 25px 70px
-    rgba(0,0,0,.18);
-
-}
-
-.modal-box h3{
-
-  margin:0;
-
-  font-family:Georgia,serif;
-
-  font-size:24px;
-
-}
-
-.modal-box p{
-
-  color:#817581;
-
-  font-size:13px;
-
-  line-height:1.6;
-
-  margin:12px 0 20px;
-
-}
-
-.modal-actions{
-
-  display:flex;
-
-  gap:10px;
-
-}
-
-.modal-actions button{
-
-  flex:1;
-
-  height:45px;
-
-  border-radius:10px;
-
-  cursor:pointer;
-
-  font-weight:bold;
-
-}
-
-.modal-cancel{
-
-  border:1px solid #eadde3;
-
-  background:white;
-
-  color:#766a73;
-
-}
-
-.modal-ok{
-
-  border:0;
-
-  background:#dc4c7d;
-
-  color:white;
-
-}
-
-
-/* ======================================
-   TOAST
-====================================== */
-
-.toast{
-
-  position:fixed;
-
-  left:50%;
-
-  bottom:25px;
-
-  transform:
-    translate(-50%,120px);
-
-  background:#33262d;
-
-  color:white;
-
-  padding:12px 18px;
-
-  border-radius:10px;
-
-  font-size:13px;
-
-  z-index:200;
-
-  transition:.3s;
-
-  box-shadow:0 12px 30px
-    rgba(0,0,0,.18);
-
-}
-
-.toast.show{
-
-  transform:
-    translate(-50%,0);
-
-}
-
-
-/* ======================================
-   RESPONSIVE
-====================================== */
-
-@media(max-width:950px){
-
-  body{
-    padding:15px;
-  }
-
-  .login-card{
-
-    grid-template-columns:1fr;
-
-    min-height:auto;
-
-  }
-
-  .brand-panel{
-
-    min-height:520px;
-
-    padding:35px 30px;
-
-  }
-
-  .logo-box{
-
-    width:280px;
-
-  }
-
-  .brand-message{
-
-    left:35px;
-
-    bottom:55px;
-
-  }
-
-  .brand-message h1{
-
-    font-size:39px;
-
-  }
-
-  .form-panel{
-
-    padding:
-      45px 35px;
-
-  }
-
-}
-
-
-@media(max-width:600px){
-
-  body{
-
-    padding:0;
-
-    align-items:flex-start;
-
-  }
-
-  .login-card{
-
-    width:100%;
-
-    min-height:100vh;
-
-    border-radius:0;
-
-  }
-
-  .brand-panel{
-
-    min-height:430px;
-
-  }
-
-  .logo-box{
-
-    width:240px;
-
-  }
-
-  .logo-camila{
-
-    font-size:50px;
-
-  }
-
-  .logo-sweetrush{
-
-    font-size:15px;
-
-  }
-
-  .brand-message{
-
-    left:25px;
-
-    bottom:40px;
-
-  }
-
-  .brand-message h1{
-
-    font-size:32px;
-
-  }
-
-  .heart{
-
-    font-size:38px;
-
-  }
-
-  .brand-message .underline{
-
-    margin-left:20px;
-
-  }
-
-  .form-panel{
-
-    padding:
-      35px 22px 40px;
-
-  }
-
-  .form-panel h2{
-
-    font-size:34px;
-
-  }
-
-  .role-btn{
-
-    height:58px;
-
-    font-size:13px;
-
-  }
-
-  .login-btn{
-
-    height:58px;
-
-  }
-
-}
-
-
-</style>
-</head>
-
-
-<body>
-
-
-<div class="login-card">
-
-
-  <!-- =================================
-       LEFT
-  ================================== -->
-
-  <section class="brand-panel">
-
-
-    <div class="flower small-one"></div>
-
-    <div class="flower small-two"></div>
-
-
-    <div class="logo-box">
-
-      <div class="logo-content">
-
-        <div
-          style="
-            font-size:28px;
-            margin-bottom:3px;
-          ">
-          🧁
-        </div>
-
-        <div class="logo-camila">
-          Camila
-        </div>
-
-        <div class="logo-sweetrush">
-          SWEETRUSH
-        </div>
-
-        <div class="logo-line"></div>
-
-        <div class="logo-love">
-          Baked with Love & Happiness
-        </div>
-
-        <div class="logo-social">
-
-          <div>
-            ◎ IG : camilasweetrush
-          </div>
-
-          <div>
-            ◉ Wa : 0823-5554-7687
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="flower bottom-left"></div>
-
-
-    <div class="brand-message">
-
-      <h1>
-
-        Baked with
-
-        <br>
-
-        <span>
-          love & happiness
-        </span>
-
-        <span class="heart">
-          ♡
-        </span>
-
-      </h1>
-
-      <div class="underline"></div>
-
-    </div>
-
-
-  </section>
-
-
-  <!-- =================================
-       RIGHT
-  ================================== -->
-
-  <section class="form-panel">
-
-
-    <div class="eyebrow">
-      CAMILA SWEETRUSH MERAUKE
-    </div>
-
-
-    <h2>
-      Selamat Datang 👋
-    </h2>
-
-
-    <div class="subtitle">
-      Masuk ke akun Anda untuk melanjutkan.
-    </div>
-
-
-    <!-- ROLE -->
-
-    <div class="role-switch">
-
-
-      <button
-        type="button"
-        class="role-btn active"
-        data-role="Admin"
-
-        <span class="role-icon">
-          ♙
-        </span>
-
-        <span>
-         Admin
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="role-btn"
-        data-role="Konsumen">
-
-        <span class="role-icon">
-          ♧
-        </span>
-
-        <span>
-          Konsumen
-        </span>
-
-      </button>
-
-
-    </div>
-
-
-    <!-- NO HP -->
-
-    <div class="form-group">
-
-      <label for="phone">
-        No HP
-      </label>
-
-
-      <div class="input-wrap">
-
-        <span class="input-icon">
-          ♧
-        </span>
-
-        <input
-          id="phone"
-          type="tel"
-          inputmode="numeric"
-          autocomplete="tel"
-          placeholder="Masukkan No HP"
-        >
-
-      </div>
-
-
-      <div class="phone-info">
-
-        No HP ini akan digunakan sebagai nama
-        pengunjung dan nama pembeli dalam
-        setiap transaksi.
-
-      </div>
-
-    </div>
-
-<!-- NAMA KONSUMEN -->
-
-<div
-  class="form-group consumer-name-group"
-  id="consumerNameGroup"
-  style="display:none;">
-
-  <label for="consumerName">
-    Nama Konsumen
-  </label>
-
-  <div class="input-wrap">
-
-    <span class="input-icon">
-      ♙
-    </span>
-
-    <input
-      id="consumerName"
-      type="text"
-      autocomplete="name"
-      placeholder="Masukkan nama konsumen">
-
-  </div>
-
-</div>
-
-    <!-- NAMA KONSUMEN -->
-
-<div
-  class="form-group consumer-name-group"
-  id="consumerNameGroup"
-  style="display:none;">
-
-  <label for="consumerName">
-    Nama Konsumen
-  </label>
-
-  <div class="input-wrap">
-
-    <span class="input-icon">
-      ♙
-    </span>
-
-    <input
-      id="consumerName"
-      type="text"
-      autocomplete="name"
-      placeholder="Masukkan nama konsumen">
-
-  </div>
-
-</div>
-
- 
-    <div class="form-group">
-
-      <label for="password">
-        Sandi
-      </label>
-
-
-      <div class="input-wrap">
-
-        <span class="input-icon">
-          ♙
-        </span>
-
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          placeholder="Masukkan sandi"
-        >
-
-
-        <button
-          type="button"
-          class="password-toggle"
-          id="togglePassword"
-          aria-label="Tampilkan sandi">
-
-          ◉
-
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- OPTIONS -->
-
-    <div class="form-options">
-
-
-      <label class="remember">
-
-        <input
-          type="checkbox"
-          id="remember">
-
-        <span>
-          Ingat saya
-        </span>
-
-      </label>
-
-
-      <button
-        type="button"
-        class="forgot"
-        id="forgotPassword">
-
-        Lupa sandi?
-
-      </button>
-
-
-    </div>
-
-
-    <!-- LOGIN -->
-
-    <button
-      type="button"
-      class="login-btn"
-      id="loginButton">
-
-      Masuk ke Camila SweetRush
-      <span style="font-size:22px;margin-left:8px">
-        →
-      </span>
-
-    </button>
-
-
-    <!-- SECURITY -->
-
-    <div class="security-note">
-
-      <div class="security-icon">
-        🔒
-      </div>
-
-      <div>
-
-        <strong>
-          Catatan:
-        </strong>
-
-        halaman ini masih prototype.
-        Autentikasi produksi akan kita sambungkan
-        ke backend/database agar sandi dan sesi
-        pengguna benar-benar aman.
-
-      </div>
-
-    </div>
-
-
-  </section>
-
-
-</div>
-
-
-<!-- =================================
-     FORGOT PASSWORD MODAL
-================================== -->
-
-<div
-  class="modal"
-  id="forgotModal">
-
-  <div class="modal-box">
-
-    <h3>
-      Lupa Sandi?
-    </h3>
-
-    <p>
-      Untuk saat ini sistem masih berupa prototype.
-      Silakan hubungi Admin Camila SweetRush
-      untuk mendapatkan bantuan akses.
-    </p>
-
-    <div class="modal-actions">
-
-      <button
-        class="modal-cancel"
-        id="closeForgot">
-        Tutup
-      </button>
-
-      <button
-        class="modal-ok"
-        id="forgotOk">
-        Mengerti
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<div
-  class="toast"
-  id="toast">
-</div>
-
-
 <script>
+
+/* ======================================
+   CAMILA SWEETRUSH LOGIN
+   ADMIN + KONSUMEN
+====================================== */
 
 
 /* ======================================
@@ -1632,50 +19,10 @@ const consumerName =
   document.getElementById("consumerName");
 
 
-document
-  .querySelectorAll(".role-btn")
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        document
-          .querySelectorAll(".role-btn")
-          .forEach(function(btn){
-            btn.classList.remove("active");
-          });
-
-        this.classList.add("active");
-
-        selectedRole =
-          this.dataset.role;
-
-        if(selectedRole === "Konsumen"){
-
-          consumerNameGroup.style.display =
-            "block";
-
-        }else{
-
-          consumerNameGroup.style.display =
-            "none";
-
-          consumerName.value = "";
-
-        }
-
-      }
-    );
-
-  });
-
-  /* ======================================
-   PHONE
+/* ======================================
+   ROLE BUTTON
 ====================================== */
 
-
-
 document
   .querySelectorAll(".role-btn")
   .forEach(function(button){
@@ -1695,39 +42,13 @@ document
 
         this.classList.add("active");
 
-
-     let selectedRole = "Admin";
-
-const consumerNameGroup =
-  document.getElementById("consumerNameGroup");
-
-const consumerName =
-  document.getElementById("consumerName");
-
-document
-  .querySelectorAll(".role-btn")
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        document
-          .querySelectorAll(".role-btn")
-          .forEach(function(btn){
-
-            btn.classList.remove("active");
-
-          });
-
-        this.classList.add("active");
 
         selectedRole =
           this.dataset.role;
 
 
         /* =========================
-           FIELD NAMA KONSUMEN
+           KONSUMEN
         ========================= */
 
         if(selectedRole === "Konsumen"){
@@ -1735,7 +56,13 @@ document
           consumerNameGroup.style.display =
             "block";
 
-        }else{
+        }
+
+        /* =========================
+           ADMIN
+        ========================= */
+
+        else{
 
           consumerNameGroup.style.display =
             "none";
@@ -1744,10 +71,6 @@ document
 
         }
 
-      }
-    );
-
-  });
       }
     );
 
@@ -1774,11 +97,12 @@ phone.addEventListener(
 
 
 /* ======================================
-   PASSWORD SHOW / HIDE
+   PASSWORD
 ====================================== */
 
 const password =
   document.getElementById("password");
+
 
 const togglePassword =
   document.getElementById("togglePassword");
@@ -1792,18 +116,16 @@ togglePassword.addEventListener(
 
       password.type = "text";
 
-      this.textContent = "◉";
-
       this.setAttribute(
         "aria-label",
         "Sembunyikan sandi"
       );
 
-    }else{
+    }
+
+    else{
 
       password.type = "password";
-
-      this.textContent = "◉";
 
       this.setAttribute(
         "aria-label",
@@ -1825,17 +147,22 @@ function showToast(message){
   const toast =
     document.getElementById("toast");
 
+
   toast.textContent =
     message;
+
 
   toast.classList.add("show");
 
 
-  setTimeout(function(){
+  setTimeout(
+    function(){
 
-    toast.classList.remove("show");
+      toast.classList.remove("show");
 
-  },2800);
+    },
+    2800
+  );
 
 }
 
@@ -1846,7 +173,7 @@ function showToast(message){
 
 const remembered =
   localStorage.getItem(
-    "camila_remembered_Admin"
+    "camila_remembered_user"
   );
 
 
@@ -1854,6 +181,7 @@ if(remembered){
 
   phone.value =
     remembered;
+
 
   document.getElementById(
     "remember"
@@ -1875,16 +203,24 @@ document
       const phoneNumber =
         phone.value.trim();
 
+
       const passwordValue =
         password.value.trim();
-      const customerName =
-  consumerName.value.trim();
+
+
+      const customerNameValue =
+        consumerName.value.trim();
+
 
       const remember =
         document.getElementById(
           "remember"
         ).checked;
 
+
+      /* =========================
+         VALIDASI NO HP
+      ========================= */
 
       if(!phoneNumber){
 
@@ -1912,6 +248,30 @@ document
       }
 
 
+      /* =========================
+         VALIDASI NAMA KONSUMEN
+      ========================= */
+
+      if(
+        selectedRole === "Konsumen" &&
+        !customerNameValue
+      ){
+
+        showToast(
+          "Silakan masukkan nama konsumen."
+        );
+
+        consumerName.focus();
+
+        return;
+
+      }
+
+
+      /* =========================
+         VALIDASI SANDI
+      ========================= */
+
       if(!passwordValue){
 
         showToast(
@@ -1922,117 +282,122 @@ document
 
         return;
 
-        if(
-  selectedRole === "Konsumen" &&
-  !customerName
-){
-
-  showToast(
-    "Silakan masukkan nama konsumen."
-  );
-
-  consumerName.focus();
-
-  return;
-
-}
       }
 
 
-      /*
-        PROTOTYPE AUTHENTICATION
+      /* =========================
+         SIMPAN DATA ADMIN
+      ========================= */
 
-        Untuk sekarang password belum
-        diverifikasi ke database.
+      if(selectedRole === "Admin"){
 
-        No HP digunakan sebagai:
-        - nama pengunjung
-        - nama pembeli
-      */
+        localStorage.setItem(
+          "camila_user",
+          phoneNumber
+        );
+
+        localStorage.setItem(
+          "camila_role",
+          "Admin"
+        );
+
+        localStorage.removeItem(
+          "camila_customer_name"
+        );
+
+        localStorage.removeItem(
+          "camila_customer_phone"
+        );
+
+      }
 
 
-    if(selectedRole === "Konsumen"){
+      /* =========================
+         SIMPAN DATA KONSUMEN
+      ========================= */
 
-  /*
-    Untuk Konsumen:
-    camila_Admin = Nama Konsumen
-    camila_customer_phone = No HP
-  */
+      if(selectedRole === "Konsumen"){
 
-  localStorage.setItem(
-    "camila_Admin",
-    customerName
-  );
+        localStorage.setItem(
+          "camila_user",
+          customerNameValue
+        );
 
-  localStorage.setItem(
-    "camila_customer_name",
-    customerName
-  );
+        localStorage.setItem(
+          "camila_role",
+          "Konsumen"
+        );
 
-  localStorage.setItem(
-    "camila_customer_phone",
-    phoneNumber
-  );
+        localStorage.setItem(
+          "camila_customer_name",
+          customerNameValue
+        );
 
-}else{
+        localStorage.setItem(
+          "camila_customer_phone",
+          phoneNumber
+        );
 
-  /*
-    Untuk Admin:
-    No HP tetap menjadi identitas Admin
-  */
+      }
 
-  localStorage.setItem(
-    "camila_Admin",
-    phoneNumber
-  );
 
-}
-
-      localStorage.setItem(
-        "camila_role",
-        selectedRole
-      );
-
+      /* =========================
+         INGAT SAYA
+      ========================= */
 
       if(remember){
 
         localStorage.setItem(
-          "camila_remembered_Admin",
+          "camila_remembered_user",
           phoneNumber
-        );
-
-      }else{
-
-        localStorage.removeItem(
-          "camila_remembered_Admin"
         );
 
       }
 
+      else{
+
+        localStorage.removeItem(
+          "camila_remembered_user"
+        );
+
+      }
+
+
+      /* =========================
+         BERHASIL
+      ========================= */
 
       showToast(
         "Login berhasil. Selamat datang!"
       );
 
 
-      setTimeout(function(){
+      /* =========================
+         REDIRECT
+      ========================= */
 
-        if(selectedRole === "Konsumen"){
+      setTimeout(
+        function(){
 
-          window.location.href =
-            "../stok/";
+          if(selectedRole === "Admin"){
 
-        }else{
+            window.location.href =
+              "../";
 
-          window.location.href =
-            "../?role=" +
-            encodeURIComponent(
-              selectedRole
-            );
+          }
 
-        }
+          else if(
+            selectedRole === "Konsumen"
+          ){
 
-      },500);
+            window.location.href =
+              "../stok/";
+
+          }
+
+        },
+        500
+      );
 
     }
   );
@@ -2042,21 +407,20 @@ document
    ENTER KEY
 ====================================== */
 
-document
-  .addEventListener(
-    "keydown",
-    function(event){
+document.addEventListener(
+  "keydown",
+  function(event){
 
-      if(event.key === "Enter"){
+    if(event.key === "Enter"){
 
-        document
-          .getElementById("loginButton")
-          .click();
-
-      }
+      document
+        .getElementById("loginButton")
+        .click();
 
     }
-  );
+
+  }
+);
 
 
 /* ======================================
@@ -2121,8 +485,4 @@ forgotModal.addEventListener(
   }
 );
 
-
 </script>
-
-</body>
-</html>
