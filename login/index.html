@@ -784,9 +784,13 @@ form.addEventListener("submit", function(event){
 
   setTimeout(function(){
 
-    location.href =
-      "../?role=" +
-      encodeURIComponent(selectedRole);
+  if (selectedRole === "Konsumen") {
+  location.href = "../stok/";
+} else {
+  location.href =
+    "../?role=" +
+    encodeURIComponent(selectedRole);
+}
 
   },500);
 
