@@ -1244,6 +1244,14 @@ const products = [
   },
 
   {
+    id:1,
+    name:"Chocolate Birthday Cake",
+    category:"Cake",
+    price:185000,
+    icon:"🎂"
+  },
+
+  {
     id:2,
     name:"Strawberry Cream Cake",
     category:"Cake",
@@ -1337,6 +1345,35 @@ const products = [
 /* =========================================================
    STATE
 ========================================================= */
+
+// =========================================================
+// DATA PRODUK TERSIMPAN
+// =========================================================
+
+const savedProducts = JSON.parse(
+  localStorage.getItem("camila_products") || "null"
+);
+
+if (Array.isArray(savedProducts)) {
+  savedProducts.forEach(function(saved) {
+    const product = products.find(function(item) {
+      return item.id === saved.id;
+    });
+
+    if (product) {
+      product.name = saved.name;
+      product.category = saved.category;
+      product.price = saved.price;
+    }
+  });
+}
+
+function saveProducts() {
+  localStorage.setItem(
+    "camila_products",
+    JSON.stringify(products)
+  );
+}
 
 let cart = [];
 
