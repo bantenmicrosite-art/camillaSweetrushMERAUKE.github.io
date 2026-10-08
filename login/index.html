@@ -1402,8 +1402,64 @@ body{
 
     </div>
 
+<!-- NAMA KONSUMEN -->
 
-    <!-- SANDI -->
+<div
+  class="form-group consumer-name-group"
+  id="consumerNameGroup"
+  style="display:none;">
+
+  <label for="consumerName">
+    Nama Konsumen
+  </label>
+
+  <div class="input-wrap">
+
+    <span class="input-icon">
+      ♙
+    </span>
+
+    <input
+      id="consumerName"
+      type="text"
+      autocomplete="name"
+      placeholder="Masukkan nama konsumen">
+
+  </div>
+
+</div>
+
+    <!-- NAMA KONSUMEN -->
+
+<div
+  class="form-group consumer-name-group"
+  id="consumerNameGroup"
+  style="display:none;">
+
+  <label for="consumerName">
+    Nama Konsumen
+  </label>
+
+  <div class="input-wrap">
+
+    <span class="input-icon">
+      ♙
+    </span>
+
+    <input
+      id="consumerName"
+      type="text"
+      autocomplete="name"
+      placeholder="Masukkan nama konsumen">
+
+  </div>
+
+</div>
+
+    let selectedRole = "User";
+
+document
+  .querySelectorAll(".role-btn")
 
     <div class="form-group">
 
@@ -1594,9 +1650,58 @@ document
         this.classList.add("active");
 
 
+     let selectedRole = "User";
+
+const consumerNameGroup =
+  document.getElementById("consumerNameGroup");
+
+const consumerName =
+  document.getElementById("consumerName");
+
+document
+  .querySelectorAll(".role-btn")
+  .forEach(function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        document
+          .querySelectorAll(".role-btn")
+          .forEach(function(btn){
+
+            btn.classList.remove("active");
+
+          });
+
+        this.classList.add("active");
+
         selectedRole =
           this.dataset.role;
 
+
+        /* =========================
+           FIELD NAMA KONSUMEN
+        ========================= */
+
+        if(selectedRole === "Konsumen"){
+
+          consumerNameGroup.style.display =
+            "block";
+
+        }else{
+
+          consumerNameGroup.style.display =
+            "none";
+
+          consumerName.value = "";
+
+        }
+
+      }
+    );
+
+  });
       }
     );
 
@@ -1726,6 +1831,8 @@ document
 
       const passwordValue =
         password.value.trim();
+      const customerName =
+  consumerName.value.trim();
 
       const remember =
         document.getElementById(
@@ -1769,6 +1876,20 @@ document
 
         return;
 
+        if(
+  selectedRole === "Konsumen" &&
+  !customerName
+){
+
+  showToast(
+    "Silakan masukkan nama konsumen."
+  );
+
+  consumerName.focus();
+
+  return;
+
+}
       }
 
 
@@ -1784,11 +1905,42 @@ document
       */
 
 
-      localStorage.setItem(
-        "camila_user",
-        phoneNumber
-      );
+    if(selectedRole === "Konsumen"){
 
+  /*
+    Untuk Konsumen:
+    camila_user = Nama Konsumen
+    camila_customer_phone = No HP
+  */
+
+  localStorage.setItem(
+    "camila_user",
+    customerName
+  );
+
+  localStorage.setItem(
+    "camila_customer_name",
+    customerName
+  );
+
+  localStorage.setItem(
+    "camila_customer_phone",
+    phoneNumber
+  );
+
+}else{
+
+  /*
+    Untuk User:
+    No HP tetap menjadi identitas user
+  */
+
+  localStorage.setItem(
+    "camila_user",
+    phoneNumber
+  );
+
+}
 
       localStorage.setItem(
         "camila_role",
