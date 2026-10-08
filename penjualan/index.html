@@ -1379,7 +1379,81 @@ let cart = [];
 
 let activeCategory = "Semua";
 
+/* =========================================================
+   EDIT PRODUK - ADMIN
+========================================================= */
 
+function editProduct(productId){
+
+  if(role !== "Admin"){
+    alert("Fitur edit produk hanya tersedia untuk Admin.");
+    return;
+  }
+
+  const product = products.find(function(item){
+    return item.id === productId;
+  });
+
+  if(!product) return;
+
+  const newName = prompt(
+    "Nama Produk:",
+    product.name
+  );
+
+  if(newName === null){
+    return;
+  }
+
+  const newPrice = prompt(
+    "Harga Produk (contoh: 185000):",
+    product.price
+  );
+
+  if(newPrice === null){
+    return;
+  }
+
+  const newCategory = prompt(
+    "Kategori Produk (Cake / Brownies / Donut / Bread / Dessert):",
+    product.category
+  );
+
+  if(newCategory === null){
+    return;
+  }
+
+  const priceNumber = Number(
+    String(newPrice).replace(/\D/g,"")
+  );
+
+  if(!newName.trim()){
+    alert("Nama produk tidak boleh kosong.");
+    return;
+  }
+
+  if(!priceNumber || priceNumber <= 0){
+    alert("Harga produk tidak valid.");
+    return;
+  }
+
+  if(!newCategory.trim()){
+    alert("Kategori tidak boleh kosong.");
+    return;
+  }
+
+  product.name = newName.trim();
+  product.price = priceNumber;
+  product.category = newCategory.trim();
+
+  saveProducts();
+
+  renderProducts();
+
+  showToast(
+    "Produk berhasil diperbarui"
+  );
+}
 /* =========================================================
    FORMAT RUPIAH
 ========================================================= */
@@ -1521,19 +1595,45 @@ function renderProducts(){
             ${product.category}
           </div>
 
-          <div class="product-bottom">
+        <div class="product-bottom">
 
-            <div class="product-price">
-              ${rupiah(product.price)}
-            </div>
+  <div class="product-price">
+    ${rupiah(product.price)}
+  </div>
 
-            <button
-              class="add-btn"
-              onclick="addToCart(${product.id})">
-              +
-            </button>
+  <div style="display:flex;gap:6px;align-items:center;">
 
-          </div>
+    ${
+      role === "Admin"
+      ? `
+        <button
+          type="button"
+          onclick="editProduct(${product.id})"
+          style="
+            border:1px solid #e8b2c4;
+            background:#fff5f8;
+            color:#c83f70;
+            border-radius:8px;
+            padding:6px 8px;
+            font-size:10px;
+            font-weight:bold;
+          "
+        >
+          ✎ Edit
+        </button>
+      `
+      : ""
+    }
+
+    <button
+      class="add-btn"
+      onclick="addToCart(${product.id})">
+      +
+    </button>
+
+  </div>
+
+</div>
 
         </div>
 
