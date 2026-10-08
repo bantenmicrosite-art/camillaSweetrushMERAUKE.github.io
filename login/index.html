@@ -4,860 +4,1925 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#d85b82">
-<title>Login | Camila SweetRush</title>
+
+<title>Login | Camila SweetRush Merauke</title>
 
 <style>
+
 :root{
-  --pink:#d85b82;
-  --pink-dark:#bd416b;
-  --soft:#fff1f5;
-  --ink:#382b31;
-  --muted:#8d7881;
-  --line:#eadde2;
+  --pink:#df4f82;
+  --pink2:#ed719b;
+  --pink3:#c83c6e;
+  --pink-soft:#fff1f6;
+  --pink-line:#f1cbd8;
+  --ink:#292334;
+  --muted:#877b8c;
+  --white:#ffffff;
+  --shadow:0 25px 70px rgba(154,52,91,.18);
 }
 
 *{
   box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
+  margin:0;
+  width:100%;
   min-height:100%;
 }
 
 body{
-  margin:0;
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:24px;
-  font-family:Inter,Segoe UI,Arial,sans-serif;
-  color:var(--ink);
+  padding:30px;
+  font-family:
+    Inter,
+    Segoe UI,
+    Arial,
+    sans-serif;
+
   background:
-    radial-gradient(circle at 12% 12%,#f3c5d273,transparent 28%),
-    radial-gradient(circle at 88% 86%,#d85b822e,transparent 30%),
-    linear-gradient(135deg,#fffaf8,#fff0f4);
+    radial-gradient(
+      circle at 5% 10%,
+      #ffdbe8 0,
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 96% 90%,
+      #ffd4e4 0,
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fff8fa,
+      #ffeef4
+    );
+
+  color:var(--ink);
 }
 
-.shell{
-  width:min(1080px,100%);
-  min-height:650px;
+
+/* ======================================
+   MAIN LOGIN CARD
+====================================== */
+
+.login-card{
+
+  width:min(1200px,100%);
+
+  min-height:720px;
+
   display:grid;
-  grid-template-columns:46% 54%;
-  overflow:hidden;
+
+  grid-template-columns:
+    minmax(420px,1fr)
+    minmax(500px,1fr);
+
   background:#fff;
-  border-radius:30px;
-  box-shadow:0 28px 90px #762f481f;
-}
 
-.brand{
-  position:relative;
+  border-radius:32px;
+
   overflow:hidden;
-  padding:58px;
-  color:#fff;
-  background:linear-gradient(150deg,#b93d68,#d85b82 48%,#ee9bb4);
-}
 
-.brand:before{
-  content:"";
-  position:absolute;
-  width:360px;
-  height:360px;
-  right:-180px;
-  bottom:-150px;
-  border:1px solid #ffffff2e;
-  border-radius:50%;
-}
+  box-shadow:var(--shadow);
 
-.brand-inner{
   position:relative;
-  z-index:1;
+
 }
 
-.logo{
-  font:italic 58px Georgia,serif;
-  letter-spacing:-2px;
+
+/* ======================================
+   LEFT PINK PANEL
+====================================== */
+
+.brand-panel{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:55px 60px;
+
+  color:white;
+
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(255,255,255,.16),
+      transparent 30%
+    ),
+    linear-gradient(
+      155deg,
+      #c9366c 0%,
+      #d94e80 45%,
+      #eb789e 100%
+    );
+
 }
 
-.sub{
-  margin-top:3px;
-  font-size:10px;
-  letter-spacing:3px;
-  font-weight:700;
+
+/* large decorative circles */
+
+.brand-panel:before{
+
+  content:"";
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  border:1px solid
+    rgba(255,255,255,.18);
+
+  border-radius:50%;
+
+  top:-300px;
+  left:-230px;
+
 }
 
-.brand-copy{
-  margin-top:118px;
-  max-width:380px;
+.brand-panel:after{
+
+  content:"";
+
+  position:absolute;
+
+  width:460px;
+  height:460px;
+
+  border:1px solid
+    rgba(255,255,255,.16);
+
+  border-radius:50%;
+
+  right:-250px;
+  bottom:-230px;
+
 }
 
-.brand-copy h2{
-  margin:0 0 16px;
-  font:400 36px/1.18 Georgia,serif;
-}
 
-.brand-copy p{
-  margin:0;
-  max-width:355px;
-  font-size:14px;
-  line-height:1.8;
-  color:#ffffffe6;
-}
+/* ======================================
+   LOGO
+====================================== */
 
-.badge{
-  display:inline-flex;
-  margin-top:34px;
-  padding:9px 13px;
-  border:1px solid #ffffff47;
-  border-radius:999px;
-  background:#ffffff1a;
-  font-size:11px;
-}
+.logo-box{
 
-.form-area{
+  width:390px;
+  max-width:100%;
+
+  aspect-ratio:1/1;
+
+  margin:0 auto;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      #fff8fa 0%,
+      #fff1f4 72%,
+      #f9d3df 73%,
+      #f9d3df 77%,
+      #fff5f7 78%,
+      #fff5f7 100%
+    );
+
+  border:5px solid
+    rgba(255,255,255,.78);
+
+  box-shadow:
+    0 18px 45px
+    rgba(105,29,59,.20),
+
+    inset 0 0 0 3px
+    rgba(231,91,129,.18);
+
+  position:relative;
+
+  z-index:3;
+
   display:flex;
+
   align-items:center;
-  padding:52px 58px;
+
+  justify-content:center;
+
+  text-align:center;
+
+  overflow:hidden;
+
 }
 
-.form-wrap{
-  width:100%;
-  max-width:500px;
-  margin:auto;
+
+/*
+  Sementara logo dibuat menggunakan
+  typography + ornamen CSS.
+
+  Nanti bagian ini akan diganti
+  dengan logo PNG asli Anda.
+*/
+
+.logo-content{
+
+  color:#bd5570;
+
+  width:85%;
+
 }
+
+.logo-camila{
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-style:italic;
+
+  font-size:68px;
+
+  line-height:.9;
+
+  color:#d6507c;
+
+  margin-bottom:7px;
+
+}
+
+.logo-sweetrush{
+
+  font-family:Georgia,serif;
+
+  font-size:21px;
+
+  letter-spacing:4px;
+
+  color:#b87358;
+
+}
+
+.logo-line{
+
+  width:65%;
+
+  height:1px;
+
+  background:#d7b078;
+
+  margin:9px auto;
+
+}
+
+.logo-love{
+
+  font-family:Georgia,serif;
+
+  font-size:13px;
+
+  color:#a96757;
+
+  font-style:italic;
+
+}
+
+.logo-social{
+
+  margin-top:15px;
+
+  color:#d34c78;
+
+  font-size:11px;
+
+  line-height:1.8;
+
+}
+
+
+/* ======================================
+   FLOWERS
+====================================== */
+
+.flower{
+
+  position:absolute;
+
+  z-index:2;
+
+  pointer-events:none;
+
+}
+
+.flower.bottom-left{
+
+  left:-12px;
+
+  bottom:-12px;
+
+  font-size:115px;
+
+  transform:rotate(-12deg);
+
+  opacity:.88;
+
+}
+
+.flower.bottom-left:before{
+
+  content:"🌸";
+
+}
+
+.flower.bottom-left:after{
+
+  content:"🌿";
+
+  position:absolute;
+
+  left:60px;
+
+  bottom:15px;
+
+  font-size:75px;
+
+  transform:rotate(35deg);
+
+}
+
+
+.flower.small-one{
+
+  left:18px;
+
+  bottom:240px;
+
+  font-size:36px;
+
+  opacity:.8;
+
+}
+
+.flower.small-one:before{
+  content:"🌸";
+}
+
+.flower.small-two{
+
+  right:38px;
+
+  top:130px;
+
+  font-size:25px;
+
+}
+
+.flower.small-two:before{
+  content:"🌸";
+}
+
+
+/* ======================================
+   LOVE TEXT
+====================================== */
+
+.brand-message{
+
+  position:absolute;
+
+  left:60px;
+
+  bottom:100px;
+
+  z-index:4;
+
+  max-width:470px;
+
+}
+
+.brand-message h1{
+
+  margin:0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:48px;
+
+  line-height:1.04;
+
+  font-weight:400;
+
+}
+
+.brand-message h1 span{
+
+  font-style:italic;
+
+}
+
+.heart{
+
+  font-size:54px;
+
+  margin-left:10px;
+
+}
+
+.brand-message .underline{
+
+  width:310px;
+
+  max-width:90%;
+
+  height:4px;
+
+  background:white;
+
+  border-radius:100%;
+
+  transform:
+    rotate(-5deg);
+
+  margin:18px 0 0 35px;
+
+  opacity:.9;
+
+}
+
+
+/* ======================================
+   RIGHT PANEL
+====================================== */
+
+.form-panel{
+
+  padding:
+    70px
+    62px
+    45px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  background:#fff;
+
+}
+
 
 .eyebrow{
-  margin-bottom:8px;
-  color:var(--pink-dark);
-  font-size:11px;
+
+  color:#e22669;
+
+  font-size:14px;
+
   font-weight:800;
+
   letter-spacing:2px;
+
   text-transform:uppercase;
+
+  margin-bottom:12px;
+
 }
 
-h1{
+
+.form-panel h2{
+
   margin:0;
-  font:600 32px/1.2 Georgia,serif;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:43px;
+
+  line-height:1.05;
+
+  color:#2c293c;
+
 }
 
-.welcome{
-  margin:9px 0 27px;
-  color:var(--muted);
-  font-size:13px;
+
+.form-panel .subtitle{
+
+  margin-top:12px;
+
+  color:#8b7d8e;
+
+  font-size:15px;
+
 }
 
-.roles{
+
+/* ======================================
+   ROLE BUTTON
+====================================== */
+
+.role-switch{
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-bottom:23px;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-top:34px;
+
 }
 
-.role{
-  min-height:52px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  background:#fff;
-  color:#715f67;
-  cursor:pointer;
-  font-size:12px;
+.role-btn{
+
+  height:66px;
+
+  border-radius:15px;
+
+  border:1px solid #eadfe5;
+
+  background:white;
+
+  color:#3b3544;
+
+  font-size:15px;
+
   font-weight:700;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:10px;
+
 }
 
-.role.active{
-  border-color:var(--pink);
-  background:var(--soft);
-  color:var(--pink-dark);
-  box-shadow:0 5px 16px #d85b821a;
+.role-btn:hover{
+
+  border-color:#ec7ba2;
+
+  background:#fff7fa;
+
 }
 
-.field{
-  margin-bottom:17px;
+.role-btn.active{
+
+  border:
+    2px solid #f03479;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff5f8,
+      #fff0f5
+    );
+
+  color:#ed246b;
+
+  box-shadow:
+    0 8px 20px
+    rgba(235,48,108,.08);
+
 }
 
-.title{
+.role-icon{
+
+  font-size:22px;
+
+}
+
+
+/* ======================================
+   FORM
+====================================== */
+
+.form-group{
+
+  margin-top:24px;
+
+}
+
+.form-group label{
+
   display:block;
-  margin-bottom:8px;
-  font-size:12px;
+
+  font-size:14px;
+
   font-weight:800;
+
+  color:#29262e;
+
+  margin-bottom:9px;
+
 }
 
 .input-wrap{
+
   position:relative;
+
 }
 
-input[type=text],
-input[type=password],
-input[type=email]{
+.input-wrap input{
+
   width:100%;
-  height:50px;
-  padding:0 14px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  outline:0;
+
+  height:58px;
+
+  border:
+    1px solid #e7dfe4;
+
+  border-radius:13px;
+
+  outline:none;
+
+  padding:
+    0 50px 0 58px;
+
+  font-size:15px;
+
+  color:#332d38;
+
   background:#fff;
-  color:var(--ink);
-  font-size:14px;
+
+  transition:.2s;
+
 }
 
-input:focus{
-  border-color:var(--pink);
-  box-shadow:0 0 0 4px #d85b821a;
+.input-wrap input:focus{
+
+  border-color:#e85587;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(232,85,135,.08);
+
 }
 
-.password input{
-  padding-right:48px;
-}
+.input-icon{
 
-.eye{
   position:absolute;
-  right:8px;
-  top:7px;
-  width:36px;
-  height:36px;
+
+  left:20px;
+
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  font-size:20px;
+
+  color:#393343;
+
+  pointer-events:none;
+
+}
+
+.password-toggle{
+
+  position:absolute;
+
+  right:14px;
+
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  width:35px;
+
+  height:35px;
+
   border:0;
-  border-radius:9px;
+
   background:transparent;
-  color:#927c85;
+
   cursor:pointer;
-  font-size:16px;
+
+  color:#393343;
+
+  font-size:19px;
+
 }
 
-.eye:hover{
-  background:var(--soft);
-  color:var(--pink-dark);
+
+/* ======================================
+   INFO HP
+====================================== */
+
+.phone-info{
+
+  color:#8a7c8c;
+
+  font-size:13px;
+
+  line-height:1.55;
+
+  margin-top:8px;
+
 }
 
-.options{
+
+/* ======================================
+   OPTIONS
+====================================== */
+
+.form-options{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  margin:2px 0 22px;
-  font-size:12px;
-  color:var(--muted);
+
+  margin-top:19px;
+
 }
 
 .remember{
+
   display:flex;
+
   align-items:center;
-  gap:7px;
+
+  gap:9px;
+
+  color:#877b8c;
+
+  font-size:13px;
+
   cursor:pointer;
+
 }
 
 .remember input{
-  accent-color:var(--pink);
+
+  width:17px;
+
+  height:17px;
+
+  accent-color:#e72e73;
+
 }
 
-.link{
+.forgot{
+
   border:0;
+
   background:none;
-  padding:0;
-  color:var(--pink-dark);
+
+  color:#ed1e68;
+
+  font-size:13px;
+
+  font-weight:700;
+
   cursor:pointer;
-  font:inherit;
+
 }
 
-.link:hover{
-  text-decoration:underline;
-}
+
+/* ======================================
+   LOGIN BUTTON
+====================================== */
 
 .login-btn{
+
   width:100%;
-  height:52px;
+
+  height:62px;
+
+  margin-top:28px;
+
   border:0;
-  border-radius:13px;
-  color:#fff;
-  background:linear-gradient(100deg,var(--pink-dark),#e57c9e);
-  box-shadow:0 10px 24px #bd416b33;
-  font-size:14px;
+
+  border-radius:14px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #dc2470,
+      #ed6c98
+    );
+
+  color:white;
+
+  font-size:17px;
+
   font-weight:800;
+
   cursor:pointer;
+
+  box-shadow:
+    0 14px 30px
+    rgba(218,36,112,.22);
+
+  transition:.2s;
+
 }
 
 .login-btn:hover{
-  filter:brightness(1.03);
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 17px 35px
+    rgba(218,36,112,.28);
+
 }
 
-.status{
-  min-height:20px;
-  margin-top:13px;
-  text-align:center;
+
+/* ======================================
+   NOTE
+====================================== */
+
+.security-note{
+
+  margin-top:35px;
+
+  padding:16px 18px;
+
+  border:
+    1px dashed #f0b5c9;
+
+  border-radius:13px;
+
+  background:#fffafd;
+
+  color:#766c78;
+
   font-size:12px;
-  color:var(--muted);
-}
 
-.status.error{
-  color:#b6385f;
-}
-
-.status.success{
-  color:#32805b;
-}
-
-.note{
-  margin-top:18px;
-  padding:12px 14px;
-  border:1px dashed #e8b4c5;
-  border-radius:12px;
-  background:#fff8fa;
-  color:#806d75;
-  font-size:10.5px;
   line-height:1.55;
+
+  display:flex;
+
+  gap:12px;
+
 }
+
+.security-icon{
+
+  width:32px;
+
+  height:32px;
+
+  min-width:32px;
+
+  border-radius:9px;
+
+  background:#ffeaf2;
+
+  color:#ec2670;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:16px;
+
+}
+
+
+/* ======================================
+   MODAL
+====================================== */
 
 .modal{
-  position:fixed;
-  inset:0;
+
   display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(45,25,35,.42);
+
+  backdrop-filter:blur(6px);
+
+  z-index:100;
+
   align-items:center;
+
   justify-content:center;
+
   padding:20px;
-  background:#2d19225c;
-  backdrop-filter:blur(4px);
-  z-index:20;
+
 }
 
 .modal.show{
+
   display:flex;
+
 }
 
-.modal-card{
-  width:min(420px,100%);
-  padding:28px;
+.modal-box{
+
+  width:min(430px,100%);
+
+  background:white;
+
   border-radius:20px;
-  background:#fff;
-  box-shadow:0 25px 70px #0003;
+
+  padding:28px;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.18);
+
 }
 
-.modal-card h3{
-  margin:0 0 8px;
-  font:600 25px Georgia,serif;
+.modal-box h3{
+
+  margin:0;
+
+  font-family:Georgia,serif;
+
+  font-size:24px;
+
 }
 
-.modal-card p{
-  margin:0 0 18px;
-  color:var(--muted);
+.modal-box p{
+
+  color:#817581;
+
   font-size:13px;
+
   line-height:1.6;
+
+  margin:12px 0 20px;
+
 }
 
 .modal-actions{
+
   display:flex;
+
   gap:10px;
-  margin-top:14px;
+
 }
 
 .modal-actions button{
+
   flex:1;
-  height:44px;
-  border-radius:11px;
+
+  height:45px;
+
+  border-radius:10px;
+
   cursor:pointer;
-  font-weight:700;
+
+  font-weight:bold;
+
 }
 
-.cancel{
-  border:1px solid var(--line);
-  background:#fff;
-  color:#6d5b63;
+.modal-cancel{
+
+  border:1px solid #eadde3;
+
+  background:white;
+
+  color:#766a73;
+
 }
 
-.send{
+.modal-ok{
+
   border:0;
-  background:var(--pink);
-  color:#fff;
+
+  background:#dc4c7d;
+
+  color:white;
+
 }
 
-@media(max-width:800px){
+
+/* ======================================
+   TOAST
+====================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  background:#33262d;
+
+  color:white;
+
+  padding:12px 18px;
+
+  border-radius:10px;
+
+  font-size:13px;
+
+  z-index:200;
+
+  transition:.3s;
+
+  box-shadow:0 12px 30px
+    rgba(0,0,0,.18);
+
+}
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+
+}
+
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media(max-width:950px){
 
   body{
-    padding:14px;
+    padding:15px;
   }
 
-  .shell{
+  .login-card{
+
     grid-template-columns:1fr;
+
     min-height:auto;
-    border-radius:24px;
+
   }
 
-  .brand{
-    min-height:300px;
-    padding:38px 30px;
+  .brand-panel{
+
+    min-height:520px;
+
+    padding:35px 30px;
+
   }
 
-  .brand-copy{
-    margin-top:65px;
+  .logo-box{
+
+    width:280px;
+
   }
 
-  .brand-copy h2{
-    font-size:30px;
+  .brand-message{
+
+    left:35px;
+
+    bottom:55px;
+
   }
 
-  .form-area{
-    padding:36px 26px 40px;
+  .brand-message h1{
+
+    font-size:39px;
+
   }
+
+  .form-panel{
+
+    padding:
+      45px 35px;
+
+  }
+
 }
 
-@media(max-width:470px){
 
-  .logo{
-    font-size:48px;
+@media(max-width:600px){
+
+  body{
+
+    padding:0;
+
+    align-items:flex-start;
+
   }
 
-  .roles{
-    grid-template-columns:repeat(2,1fr);
+  .login-card{
+
+    width:100%;
+
+    min-height:100vh;
+
+    border-radius:0;
+
   }
 
-  .form-area{
-    padding-left:20px;
-    padding-right:20px;
+  .brand-panel{
+
+    min-height:430px;
+
   }
+
+  .logo-box{
+
+    width:240px;
+
+  }
+
+  .logo-camila{
+
+    font-size:50px;
+
+  }
+
+  .logo-sweetrush{
+
+    font-size:15px;
+
+  }
+
+  .brand-message{
+
+    left:25px;
+
+    bottom:40px;
+
+  }
+
+  .brand-message h1{
+
+    font-size:32px;
+
+  }
+
+  .heart{
+
+    font-size:38px;
+
+  }
+
+  .brand-message .underline{
+
+    margin-left:20px;
+
+  }
+
+  .form-panel{
+
+    padding:
+      35px 22px 40px;
+
+  }
+
+  .form-panel h2{
+
+    font-size:34px;
+
+  }
+
+  .role-btn{
+
+    height:58px;
+
+    font-size:13px;
+
+  }
+
+  .login-btn{
+
+    height:58px;
+
+  }
+
 }
+
+
 </style>
 </head>
 
+
 <body>
 
-<main class="shell">
 
-<section class="brand">
+<div class="login-card">
 
-<div class="brand-inner">
 
-<div class="logo">Camila</div>
+  <!-- =================================
+       LEFT
+  ================================== -->
 
-<div class="sub">
-SWEETRUSH · CAKE · PASTRY · HAPPINESS
+  <section class="brand-panel">
+
+
+    <div class="flower small-one"></div>
+
+    <div class="flower small-two"></div>
+
+
+    <div class="logo-box">
+
+      <div class="logo-content">
+
+        <div
+          style="
+            font-size:28px;
+            margin-bottom:3px;
+          ">
+          🧁
+        </div>
+
+        <div class="logo-camila">
+          Camila
+        </div>
+
+        <div class="logo-sweetrush">
+          SWEETRUSH
+        </div>
+
+        <div class="logo-line"></div>
+
+        <div class="logo-love">
+          Baked with Love & Happiness
+        </div>
+
+        <div class="logo-social">
+
+          <div>
+            ◎ IG : camilasweetrush
+          </div>
+
+          <div>
+            ◉ Wa : 0823-5554-7687
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="flower bottom-left"></div>
+
+
+    <div class="brand-message">
+
+      <h1>
+
+        Baked with
+
+        <br>
+
+        <span>
+          love & happiness
+        </span>
+
+        <span class="heart">
+          ♡
+        </span>
+
+      </h1>
+
+      <div class="underline"></div>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- =================================
+       RIGHT
+  ================================== -->
+
+  <section class="form-panel">
+
+
+    <div class="eyebrow">
+      CAMILA SWEETRUSH MERAUKE
+    </div>
+
+
+    <h2>
+      Selamat Datang 👋
+    </h2>
+
+
+    <div class="subtitle">
+      Masuk ke akun Anda untuk melanjutkan.
+    </div>
+
+
+    <!-- ROLE -->
+
+    <div class="role-switch">
+
+
+      <button
+        type="button"
+        class="role-btn active"
+        data-role="User">
+
+        <span class="role-icon">
+          ♙
+        </span>
+
+        <span>
+          User
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="role-btn"
+        data-role="Konsumen">
+
+        <span class="role-icon">
+          ♧
+        </span>
+
+        <span>
+          Konsumen
+        </span>
+
+      </button>
+
+
+    </div>
+
+
+    <!-- NO HP -->
+
+    <div class="form-group">
+
+      <label for="phone">
+        No HP
+      </label>
+
+
+      <div class="input-wrap">
+
+        <span class="input-icon">
+          ♧
+        </span>
+
+        <input
+          id="phone"
+          type="tel"
+          inputmode="numeric"
+          autocomplete="tel"
+          placeholder="Masukkan No HP"
+        >
+
+      </div>
+
+
+      <div class="phone-info">
+
+        No HP ini akan digunakan sebagai nama
+        pengunjung dan nama pembeli dalam
+        setiap transaksi.
+
+      </div>
+
+    </div>
+
+
+    <!-- SANDI -->
+
+    <div class="form-group">
+
+      <label for="password">
+        Sandi
+      </label>
+
+
+      <div class="input-wrap">
+
+        <span class="input-icon">
+          ♙
+        </span>
+
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Masukkan sandi"
+        >
+
+
+        <button
+          type="button"
+          class="password-toggle"
+          id="togglePassword"
+          aria-label="Tampilkan sandi">
+
+          ◉
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- OPTIONS -->
+
+    <div class="form-options">
+
+
+      <label class="remember">
+
+        <input
+          type="checkbox"
+          id="remember">
+
+        <span>
+          Ingat saya
+        </span>
+
+      </label>
+
+
+      <button
+        type="button"
+        class="forgot"
+        id="forgotPassword">
+
+        Lupa sandi?
+
+      </button>
+
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <button
+      type="button"
+      class="login-btn"
+      id="loginButton">
+
+      Masuk ke Camila SweetRush
+      <span style="font-size:22px;margin-left:8px">
+        →
+      </span>
+
+    </button>
+
+
+    <!-- SECURITY -->
+
+    <div class="security-note">
+
+      <div class="security-icon">
+        🔒
+      </div>
+
+      <div>
+
+        <strong>
+          Catatan:
+        </strong>
+
+        halaman ini masih prototype.
+        Autentikasi produksi akan kita sambungkan
+        ke backend/database agar sandi dan sesi
+        pengguna benar-benar aman.
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
 </div>
 
-<div class="brand-copy">
 
-<h2>
-Sweet moments,<br>
-happier people. ♡
-</h2>
-
-<p>
-Selamat datang di Camila SweetRush.
-Satu pintu untuk mengelola operasional,
-transaksi, dan pengalaman pelanggan.
-</p>
-
-<div class="badge">
-✦ Premium Cake &amp; Pastry
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="form-area">
-
-<div class="form-wrap">
-
-<div class="eyebrow">
-Camila SweetRush
-</div>
-
-<h1>
-Selamat Datang 👋
-</h1>
-
-<p class="welcome">
-Masuk ke akun Anda untuk melanjutkan.
-</p>
-
-
-<div class="roles">
-
-<button class="role active" type="button" data-role="Admin">
-Admin
-</button>
-
-<button class="role" type="button" data-role="Kasir">
-Kasir
-</button>
-
-<button class="role" type="button" data-role="Owner">
-Owner
-</button>
-
-<button class="role" type="button" data-role="Konsumen">
-Konsumen
-</button>
-
-</div>
-
-
-<form id="loginForm">
-
-<div class="field">
-
-<label class="title" for="username">
-Username / Email
-</label>
-
-<input
-id="username"
-type="text"
-autocomplete="username"
-placeholder="Masukkan username atau email"
->
-
-</div>
-
-
-<div class="field password">
-
-<label class="title" for="password">
-Password
-</label>
-
-<div class="input-wrap">
-
-<input
-id="password"
-type="password"
-autocomplete="current-password"
-placeholder="Masukkan password"
->
-
-<button
-class="eye"
-id="toggleBtn"
-type="button"
-aria-label="Tampilkan password"
->
-◉
-</button>
-
-</div>
-
-</div>
-
-
-<div class="options">
-
-<label class="remember">
-
-<input
-id="remember"
-type="checkbox"
->
-
-<span>
-Ingat saya
-</span>
-
-</label>
-
-
-<button
-class="link"
-id="forgotBtn"
-type="button"
->
-Lupa password?
-</button>
-
-</div>
-
-
-<button
-class="login-btn"
-type="submit"
->
-Masuk ke Camila SweetRush
-</button>
+<!-- =================================
+     FORGOT PASSWORD MODAL
+================================== -->
 
 <div
-id="status"
-class="status"
-aria-live="polite"
-></div>
+  class="modal"
+  id="forgotModal">
 
-</form>
+  <div class="modal-box">
 
+    <h3>
+      Lupa Sandi?
+    </h3>
 
-<div class="note">
+    <p>
+      Untuk saat ini sistem masih berupa prototype.
+      Silakan hubungi Admin Camila SweetRush
+      untuk mendapatkan bantuan akses.
+    </p>
 
-<b>Catatan:</b>
-halaman ini masih prototype.
-Autentikasi produksi akan kita sambungkan
-ke backend/database agar password dan sesi
-pengguna benar-benar aman.
+    <div class="modal-actions">
 
-</div>
+      <button
+        class="modal-cancel"
+        id="closeForgot">
+        Tutup
+      </button>
 
-</div>
+      <button
+        class="modal-ok"
+        id="forgotOk">
+        Mengerti
+      </button>
 
-</section>
+    </div>
 
-</main>
-
-
-<div class="modal" id="forgotModal">
-
-<div class="modal-card">
-
-<h3>
-Lupa Password?
-</h3>
-
-<p>
-Masukkan email akun Anda.
-Fitur reset password akan kita sambungkan
-saat backend autentikasi sudah aktif.
-</p>
-
-<input
-id="resetEmail"
-type="email"
-placeholder="nama@email.com"
->
-
-<div class="modal-actions">
-
-<button
-class="cancel"
-id="closeModal"
-type="button"
->
-Batal
-</button>
-
-<button
-class="send"
-id="resetBtn"
-type="button"
->
-Kirim Permintaan
-</button>
+  </div>
 
 </div>
 
-</div>
 
+<div
+  class="toast"
+  id="toast">
 </div>
 
 
 <script>
 
-let selectedRole =
-localStorage.getItem("camila_role") || "Admin";
 
-const roles =
-document.querySelectorAll(".role");
+/* ======================================
+   ROLE
+====================================== */
 
-const username =
-document.getElementById("username");
-
-const password =
-document.getElementById("password");
-
-const remember =
-document.getElementById("remember");
-
-const status =
-document.getElementById("status");
-
-const form =
-document.getElementById("loginForm");
-
-const modal =
-document.getElementById("forgotModal");
+let selectedRole = "User";
 
 
-function selectRole(role){
+document
+  .querySelectorAll(".role-btn")
+  .forEach(function(button){
 
-  selectedRole = role;
+    button.addEventListener(
+      "click",
+      function(){
 
-  roles.forEach(button => {
+        document
+          .querySelectorAll(".role-btn")
+          .forEach(function(btn){
 
-    button.classList.toggle(
-      "active",
-      button.dataset.role === role
+            btn.classList.remove("active");
+
+          });
+
+
+        this.classList.add("active");
+
+
+        selectedRole =
+          this.dataset.role;
+
+      }
     );
 
   });
 
-}
+
+/* ======================================
+   PHONE
+====================================== */
+
+const phone =
+  document.getElementById("phone");
 
 
-roles.forEach(button => {
+phone.addEventListener(
+  "input",
+  function(){
 
-  button.addEventListener(
-    "click",
-    () => selectRole(button.dataset.role)
-  );
-
-});
-
-
-const saved =
-localStorage.getItem("camila_remembered_user");
-
-if(saved){
-
-  username.value = saved;
-
-  remember.checked = true;
-
-}
-
-
-document
-.getElementById("toggleBtn")
-.addEventListener("click", function(){
-
-  const isText =
-    password.type === "text";
-
-  password.type =
-    isText ? "password" : "text";
-
-  this.textContent =
-    isText ? "◉" : "○";
-
-});
-
-
-form.addEventListener("submit", function(event){
-
-  event.preventDefault();
-
-  status.className = "status";
-
-  const user =
-    username.value.trim();
-
-  const pass =
-    password.value.trim();
-
-
-  if(!user || !pass){
-
-    status.textContent =
-      "Username/email dan password wajib diisi.";
-
-    status.classList.add("error");
-
-    return;
+    this.value =
+      this.value.replace(/\D/g,"");
 
   }
+);
 
 
-  if(remember.checked){
+/* ======================================
+   PASSWORD SHOW / HIDE
+====================================== */
 
-    localStorage.setItem(
-      "camila_remembered_user",
-      user
-    );
+const password =
+  document.getElementById("password");
 
-  }else{
+const togglePassword =
+  document.getElementById("togglePassword");
 
-    localStorage.removeItem(
-      "camila_remembered_user"
-    );
+
+togglePassword.addEventListener(
+  "click",
+  function(){
+
+    if(password.type === "password"){
+
+      password.type = "text";
+
+      this.textContent = "◉";
+
+      this.setAttribute(
+        "aria-label",
+        "Sembunyikan sandi"
+      );
+
+    }else{
+
+      password.type = "password";
+
+      this.textContent = "◉";
+
+      this.setAttribute(
+        "aria-label",
+        "Tampilkan sandi"
+      );
+
+    }
 
   }
+);
 
 
-  localStorage.setItem(
-    "camila_role",
-    selectedRole
-  );
+/* ======================================
+   TOAST
+====================================== */
 
-  localStorage.setItem(
-    "camila_user",
-    user
-  );
+function showToast(message){
 
+  const toast =
+    document.getElementById("toast");
 
-  status.textContent =
-    "Login berhasil. Membuka dashboard...";
+  toast.textContent =
+    message;
 
-  status.classList.add("success");
+  toast.classList.add("show");
 
 
   setTimeout(function(){
 
-  if (selectedRole === "Konsumen") {
-  location.href = "../stok/";
-} else {
-  location.href =
-    "../?role=" +
-    encodeURIComponent(selectedRole);
+    toast.classList.remove("show");
+
+  },2800);
+
 }
 
-  },500);
 
-});
+/* ======================================
+   REMEMBER PHONE
+====================================== */
+
+const remembered =
+  localStorage.getItem(
+    "camila_remembered_user"
+  );
+
+
+if(remembered){
+
+  phone.value =
+    remembered;
+
+  document.getElementById(
+    "remember"
+  ).checked = true;
+
+}
+
+
+/* ======================================
+   LOGIN
+====================================== */
+
+document
+  .getElementById("loginButton")
+  .addEventListener(
+    "click",
+    function(){
+
+      const phoneNumber =
+        phone.value.trim();
+
+      const passwordValue =
+        password.value.trim();
+
+      const remember =
+        document.getElementById(
+          "remember"
+        ).checked;
+
+
+      if(!phoneNumber){
+
+        showToast(
+          "Silakan masukkan No HP."
+        );
+
+        phone.focus();
+
+        return;
+
+      }
+
+
+      if(phoneNumber.length < 8){
+
+        showToast(
+          "No HP belum valid."
+        );
+
+        phone.focus();
+
+        return;
+
+      }
+
+
+      if(!passwordValue){
+
+        showToast(
+          "Silakan masukkan sandi."
+        );
+
+        password.focus();
+
+        return;
+
+      }
+
+
+      /*
+        PROTOTYPE AUTHENTICATION
+
+        Untuk sekarang password belum
+        diverifikasi ke database.
+
+        No HP digunakan sebagai:
+        - nama pengunjung
+        - nama pembeli
+      */
+
+
+      localStorage.setItem(
+        "camila_user",
+        phoneNumber
+      );
+
+
+      localStorage.setItem(
+        "camila_role",
+        selectedRole
+      );
+
+
+      if(remember){
+
+        localStorage.setItem(
+          "camila_remembered_user",
+          phoneNumber
+        );
+
+      }else{
+
+        localStorage.removeItem(
+          "camila_remembered_user"
+        );
+
+      }
+
+
+      showToast(
+        "Login berhasil. Selamat datang!"
+      );
+
+
+      setTimeout(function(){
+
+        if(selectedRole === "Konsumen"){
+
+          window.location.href =
+            "../stok/";
+
+        }else{
+
+          window.location.href =
+            "../?role=" +
+            encodeURIComponent(
+              selectedRole
+            );
+
+        }
+
+      },500);
+
+    }
+  );
+
+
+/* ======================================
+   ENTER KEY
+====================================== */
+
+document
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key === "Enter"){
+
+        document
+          .getElementById("loginButton")
+          .click();
+
+      }
+
+    }
+  );
+
+
+/* ======================================
+   FORGOT PASSWORD
+====================================== */
+
+const forgotModal =
+  document.getElementById(
+    "forgotModal"
+  );
 
 
 document
-.getElementById("forgotBtn")
-.onclick = function(){
+  .getElementById("forgotPassword")
+  .addEventListener(
+    "click",
+    function(){
 
-  modal.classList.add("show");
+      forgotModal.classList.add(
+        "show"
+      );
 
-  document
-    .getElementById("resetEmail")
-    .focus();
+    }
+  );
 
-};
+
+function closeForgot(){
+
+  forgotModal.classList.remove(
+    "show"
+  );
+
+}
 
 
 document
-.getElementById("closeModal")
-.onclick = function(){
+  .getElementById("closeForgot")
+  .addEventListener(
+    "click",
+    closeForgot
+  );
 
-  modal.classList.remove("show");
 
-};
+document
+  .getElementById("forgotOk")
+  .addEventListener(
+    "click",
+    closeForgot
+  );
 
 
-modal.onclick = function(event){
+forgotModal.addEventListener(
+  "click",
+  function(event){
 
-  if(event.target === modal){
+    if(event.target === forgotModal){
 
-    modal.classList.remove("show");
+      closeForgot();
+
+    }
 
   }
+);
 
-};
-
-
-document
-.getElementById("resetBtn")
-.onclick = function(){
-
-  const email =
-    document.getElementById("resetEmail")
-    .value
-    .trim();
-
-
-  if(!email){
-
-    alert(
-      "Masukkan email terlebih dahulu."
-    );
-
-    return;
-
-  }
-
-
-  modal.classList.remove("show");
-
-  status.textContent =
-    "Permintaan reset password dicatat. " +
-    "Email reset akan aktif setelah backend tersambung.";
-
-};
 
 </script>
 
