@@ -1625,6 +1625,56 @@ body{
 
 let selectedRole = "User";
 
+const consumerNameGroup =
+  document.getElementById("consumerNameGroup");
+
+const consumerName =
+  document.getElementById("consumerName");
+
+
+document
+  .querySelectorAll(".role-btn")
+  .forEach(function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        document
+          .querySelectorAll(".role-btn")
+          .forEach(function(btn){
+            btn.classList.remove("active");
+          });
+
+        this.classList.add("active");
+
+        selectedRole =
+          this.dataset.role;
+
+        if(selectedRole === "Konsumen"){
+
+          consumerNameGroup.style.display =
+            "block";
+
+        }else{
+
+          consumerNameGroup.style.display =
+            "none";
+
+          consumerName.value = "";
+
+        }
+
+      }
+    );
+
+  });
+
+  /* ======================================
+   PHONE
+====================================== */
+
+
 
 document
   .querySelectorAll(".role-btn")
