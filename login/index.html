@@ -65,8 +65,8 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
   <div class="subtitle">Masuk ke akun Anda untuk melanjutkan.</div>
 
   <div class="role-switch">
-<button type="button" class="role-btn active" data-role="Admin">Admin</button>
-<button type="button" class="role-btn" data-role="Konsumen">Konsumen</button>
+    <button type="button" class="role-btn active" data-role="Admin">Admin</button>
+    <button type="button" class="role-btn" data-role="Konsumen">Konsumen</button>
   </div>
 
   <form id="loginForm">
@@ -244,6 +244,24 @@ loginForm.addEventListener("submit",function(event){
     localStorage.setItem("camila_customer_name",customerNameValue);
     localStorage.setItem("camila_customer_phone",customerPhoneValue);
     localStorage.removeItem("camila_remembered_user");
+
+    const customerList = JSON.parse(localStorage.getItem("camila_customers") || "[]");
+    const existingCustomer = customerList.findIndex(function(item){
+      return item.phone === customerPhoneValue;
+    });
+    const customerRecord = {
+      name: customerNameValue,
+      phone: customerPhoneValue,
+      online: true,
+      lastLogin: new Date().toISOString(),
+      lastPurchase: existingCustomer >= 0 ? (customerList[existingCustomer].lastPurchase || null) : null
+    };
+    if(existingCustomer >= 0){
+      customerList[existingCustomer] = {...customerList[existingCustomer],...customerRecord};
+    }else{
+      customerList.push(customerRecord);
+    }
+    localStorage.setItem("camila_customers",JSON.stringify(customerList));
   }
 
   showToast("Login berhasil...");
