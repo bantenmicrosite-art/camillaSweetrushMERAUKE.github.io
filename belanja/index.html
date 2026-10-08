@@ -1,1 +1,1528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d85b88">
+<title>Belanja | Camila SweetRush</title>
 
+<style>
+:root{
+  --pink:#d85b88;
+  --dark:#b83e6c;
+  --bg:#fff8fb;
+  --line:#efdce5;
+  --text:#35282d;
+  --muted:#8b7b84;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+header{
+  height:72px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+  position:sticky;
+  top:0;
+  z-index:5;
+}
+
+.brand{
+  font-family:Georgia,serif;
+  font-weight:700;
+  color:var(--dark);
+}
+
+.brand small{
+  display:block;
+  font:800 9px Arial;
+  letter-spacing:2px;
+  color:#9b7582;
+  margin-top:3px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.btn{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  padding:10px 13px;
+  color:var(--dark);
+  font-weight:800;
+  cursor:pointer;
+}
+
+.cart{
+  background:var(--pink);
+  color:#fff;
+  border:0;
+}
+
+.badge{
+  background:#fff;
+  color:var(--dark);
+  border-radius:20px;
+  padding:3px 7px;
+  margin-left:5px;
+}
+
+main{
+  max-width:1250px;
+  margin:auto;
+  padding:28px 22px 45px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#fff0f6,#ffe0eb);
+  border:1px solid #f1cedb;
+  border-radius:20px;
+  padding:24px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font:700 30px Georgia,serif;
+  margin:0;
+}
+
+.hero p{
+  color:#a84b6d;
+  margin:8px 0 0;
+}
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.search{
+  flex:1;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+}
+
+.filters{
+  display:flex;
+  gap:7px;
+  overflow:auto;
+  margin-bottom:18px;
+}
+
+.filter{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:9px;
+  padding:9px 12px;
+  font-weight:700;
+  color:#795d68;
+  cursor:pointer;
+}
+
+.filter.active{
+  background:var(--pink);
+  color:#fff;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.photo{
+  height:180px;
+  background:#fff0f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.placeholder{
+  font-size:50px;
+}
+
+.body{
+  padding:14px;
+}
+
+.name{
+  font-weight:800;
+}
+
+.cat,
+.stock{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.price{
+  color:var(--dark);
+  font-weight:800;
+  margin-top:10px;
+}
+
+.buy{
+  width:100%;
+  margin-top:11px;
+  padding:11px;
+  border:0;
+  border-radius:9px;
+  background:#fff0f5;
+  color:var(--dark);
+  font-weight:800;
+  cursor:pointer;
+}
+
+.buy:disabled{
+  opacity:.4;
+}
+
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0006;
+  z-index:20;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.overlay.show{
+  display:flex;
+}
+
+.modal{
+  background:#fff;
+  border-radius:18px;
+  width:min(720px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:20px;
+}
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  padding-bottom:12px;
+  margin-bottom:14px;
+}
+
+.close{
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.item{
+  display:grid;
+  grid-template-columns:55px 1fr auto;
+  gap:10px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin-bottom:8px;
+}
+
+.thumb{
+  width:55px;
+  height:55px;
+  background:#fff0f5;
+  border-radius:8px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.qty button{
+  width:28px;
+  height:28px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:7px;
+}
+
+.total{
+  border-top:1px solid var(--line);
+  padding-top:12px;
+  margin-top:12px;
+  font-size:17px;
+  font-weight:800;
+  text-align:right;
+  color:var(--dark);
+}
+
+label{
+  display:block;
+  font-size:11px;
+  font-weight:800;
+  margin:12px 0 5px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#fff;
+}
+
+textarea{
+  resize:vertical;
+}
+
+.primary{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:var(--pink);
+  color:#fff;
+  font-weight:800;
+  margin-top:14px;
+}
+
+.note{
+  font-size:10px;
+  color:var(--muted);
+  background:#fff8fa;
+  border:1px dashed #e7b8c9;
+  padding:10px;
+  border-radius:8px;
+  margin-top:10px;
+}
+
+@media(max-width:1000px){
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:700px){
+  header{
+    padding:0 12px;
+  }
+
+  .date{
+    display:none;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  main{
+    padding:16px 10px;
+  }
+
+  .toolbar{
+    flex-direction:column;
+  }
+
+  .photo{
+    height:145px;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="brand">
+CAMILA SWEETRUSH
+<small>MERAUKE · CAKE · PASTRY</small>
+</div>
+
+<div class="actions">
+
+<button class="btn date" id="date"></button>
+
+<button class="btn" onclick="logout()">
+Logout
+</button>
+
+<button class="btn cart" onclick="openCart()">
+🛍️ Keranjang
+<span class="badge" id="count">0</span>
+</button>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="hero">
+
+<h1>Belanja Produk Camila</h1>
+
+<p>
+Selamat datang,
+<b id="user"></b>.
+Pilih produk favorit Anda.
+</p>
+
+</section>
+
+<div class="toolbar">
+
+<input
+class="search"
+id="search"
+placeholder="Cari produk..."
+>
+
+</div>
+
+<div class="filters" id="filters"></div>
+
+<div class="grid" id="products"></div>
+
+</main>
+
+
+<!-- KERANJANG -->
+
+<div class="overlay" id="cartOverlay">
+
+<div class="modal">
+
+<div class="head">
+
+<h2>Keranjang</h2>
+
+<button class="close" onclick="closeCart()">×</button>
+
+</div>
+
+<div id="cartList"></div>
+
+<div class="total">
+Total:
+<span id="total">Rp 0</span>
+</div>
+
+<button
+class="primary"
+id="checkout"
+onclick="openCheckout()"
+>
+Lanjut Checkout
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="overlay" id="checkoutOverlay">
+
+<div class="modal">
+
+<div class="head">
+
+<h2>Checkout</h2>
+
+<button class="close" onclick="closeCheckout()">×</button>
+
+</div>
+
+<div id="summary"></div>
+
+
+<label>Nama Konsumen</label>
+
+<input id="name">
+
+
+<label>No. HP</label>
+
+<input
+id="phone"
+inputmode="numeric"
+>
+
+
+<label>Pengambilan / Pengiriman</label>
+
+<select id="fulfillment">
+
+<option>
+Outlet Paulus Napi No 12
+</option>
+
+<option>
+Diantar via Kurir
+</option>
+
+</select>
+
+
+<div id="addrWrap" style="display:none">
+
+<label>Alamat Penerima</label>
+
+<textarea
+id="address"
+rows="3"
+placeholder="Masukkan alamat lengkap penerima"
+></textarea>
+
+</div>
+
+
+<label>Metode Pembayaran</label>
+
+<select id="payment">
+
+<option>Cash</option>
+
+<option>QRIS</option>
+
+<option>
+Transfer ke Rekening BNI Eraswati Andi Syafiuddin
+</option>
+
+</select>
+
+
+<div class="note">
+
+QRIS/Transfer dicatat sebagai
+<b>Menunggu Pembayaran</b>.
+
+Cash dicatat sebagai
+<b>Belum Dibayar</b>.
+
+Belum terhubung payment gateway.
+
+</div>
+
+
+<button
+class="primary"
+onclick="confirmOrder()"
+>
+✓ Konfirmasi Pesanan
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SUKSES -->
+
+<div class="overlay" id="successOverlay">
+
+<div class="modal">
+
+<div class="head">
+
+<h2>Pesanan Berhasil 🎉</h2>
+
+</div>
+
+<p id="successText"></p>
+
+<button
+class="primary"
+onclick="closeSuccess()"
+>
+Kembali Belanja
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const user =
+localStorage.getItem("camila_user");
+
+const role =
+localStorage.getItem("camila_role");
+
+if(
+!user ||
+role !== "Konsumen"
+){
+location.replace("../login/");
+}
+
+document.getElementById("user").textContent = user;
+
+document.getElementById("date").textContent =
+new Date().toLocaleDateString(
+"id-ID",
+{
+day:"numeric",
+month:"short",
+year:"numeric"
+}
+);
+
+
+let cart = [];
+
+let active = "Semua";
+
+
+function products(){
+
+let p =
+JSON.parse(
+localStorage.getItem("camila_products") || "[]"
+);
+
+return Array.isArray(p) ? p : [];
+
+}
+
+
+function saveProducts(p){
+
+localStorage.setItem(
+"camila_products",
+JSON.stringify(p)
+);
+
+}
+
+
+function rupiah(n){
+
+return "Rp " +
+Number(n || 0)
+.toLocaleString("id-ID");
+
+}
+
+
+function render(){
+
+let p = products();
+
+let q =
+document
+.getElementById("search")
+.value
+.toLowerCase();
+
+let cats = [
+"Semua",
+...new Set(
+p.map(x=>x.category)
+.filter(Boolean)
+)
+];
+
+
+document.getElementById("filters").innerHTML =
+
+cats.map(x=>`
+
+<button
+class="filter ${x===active?"active":""}"
+onclick='setCategory(${JSON.stringify(x)})'
+>
+${x}
+</button>
+
+`).join("");
+
+
+let list = p.filter(x =>
+
+(active==="Semua" ||
+x.category===active)
+
+&&
+
+String(x.name)
+.toLowerCase()
+.includes(q)
+
+);
+
+
+document.getElementById("products").innerHTML =
+
+list.length
+
+?
+
+list.map(x => {
+
+let stock =
+Number(x.stock || 0);
+
+return `
+
+<div class="card">
+
+<div class="photo">
+
+${
+x.image
+
+?
+
+`<img src="${x.image}">`
+
+:
+
+`<div class="placeholder">🎂</div>`
+}
+
+</div>
+
+<div class="body">
+
+<div class="name">
+${x.name}
+</div>
+
+<div class="cat">
+${x.category || ""}
+</div>
+
+<div class="price">
+${rupiah(x.price)}
+</div>
+
+<div class="stock">
+Stok: ${stock}
+</div>
+
+<button
+class="buy"
+${stock<=0?"disabled":""}
+onclick="add(${x.id})"
+>
++ Tambah ke Keranjang
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("")
+
+:
+
+"<p>Produk tidak ditemukan.</p>";
+
+}
+
+
+function setCategory(category){
+
+active = category;
+
+render();
+
+}
+
+
+function add(id){
+
+let p =
+products()
+.find(
+x=>Number(x.id)===Number(id)
+);
+
+if(!p)return;
+
+
+let item =
+cart.find(
+x=>Number(x.id)===Number(id)
+);
+
+
+if(item){
+
+if(
+item.qty >= Number(p.stock)
+){
+
+alert("Stok tidak mencukupi");
+
+return;
+
+}
+
+item.qty++;
+
+}
+
+else{
+
+cart.push({
+...p,
+qty:1
+});
+
+}
+
+
+renderCart();
+
+}
+
+
+function renderCart(){
+
+let box =
+document.getElementById("cartList");
+
+
+if(!cart.length){
+
+box.innerHTML =
+"<p>Keranjang masih kosong.</p>";
+
+}
+
+else{
+
+box.innerHTML =
+
+cart.map(i=>`
+
+<div class="item">
+
+<div class="thumb">
+
+${
+i.image
+?
+
+`<img src="${i.image}">`
+
+:
+
+"🎂"
+}
+
+</div>
+
+<div>
+
+<b>${i.name}</b>
+
+<div>
+${rupiah(i.price)}
+</div>
+
+<div class="qty">
+
+<button
+onclick="qty(${i.id},-1)"
+>
+−
+</button>
+
+${i.qty}
+
+<button
+onclick="qty(${i.id},1)"
+>
++
+</button>
+
+</div>
+
+</div>
+
+<b>
+${rupiah(i.price*i.qty)}
+</b>
+
+</div>
+
+`).join("");
+
+}
+
+
+let total =
+cart.reduce(
+(a,x)=>a+(Number(x.price)||0)*x.qty,
+0
+);
+
+
+document.getElementById("total")
+.textContent =
+rupiah(total);
+
+
+document.getElementById("count")
+.textContent =
+cart.reduce(
+(a,x)=>a+x.qty,
+0
+);
+
+
+document.getElementById("checkout")
+.disabled =
+!cart.length;
+
+}
+
+
+function qty(id,d){
+
+let item =
+cart.find(
+x=>Number(x.id)===Number(id)
+);
+
+let p =
+products()
+.find(
+x=>Number(x.id)===Number(id)
+);
+
+if(!item || !p)return;
+
+
+if(
+d>0 &&
+item.qty>=Number(p.stock)
+){
+
+alert("Stok tidak mencukupi");
+
+return;
+
+}
+
+
+item.qty += d;
+
+
+if(item.qty<=0){
+
+cart =
+cart.filter(
+x=>Number(x.id)!==Number(id)
+);
+
+}
+
+
+renderCart();
+
+}
+
+
+function openCart(){
+
+renderCart();
+
+document
+.getElementById("cartOverlay")
+.classList
+.add("show");
+
+}
+
+
+function closeCart(){
+
+document
+.getElementById("cartOverlay")
+.classList
+.remove("show");
+
+}
+
+
+function openCheckout(){
+
+if(!cart.length)return;
+
+
+document.getElementById("name")
+.value =
+localStorage.getItem("camila_customer_name")
+||
+user;
+
+
+document.getElementById("phone")
+.value =
+localStorage.getItem("camila_customer_phone")
+||
+"";
+
+
+document.getElementById("summary").innerHTML =
+
+cart.map(i=>`
+
+<p>
+${i.name}
+× ${i.qty}
+—
+${rupiah(i.price*i.qty)}
+</p>
+
+`).join("")
+
++
+
+`
+
+<p>
+
+<b>
+
+Total
+
+${rupiah(
+cart.reduce(
+(a,x)=>a+x.price*x.qty,
+0
+)
+)}
+
+</b>
+
+</p>
+
+`;
+
+
+closeCart();
+
+
+document
+.getElementById("checkoutOverlay")
+.classList
+.add("show");
+
+}
+
+
+function closeCheckout(){
+
+document
+.getElementById("checkoutOverlay")
+.classList
+.remove("show");
+
+}
+
+
+document
+.getElementById("fulfillment")
+.onchange =
+
+function(){
+
+document
+.getElementById("addrWrap")
+.style
+.display =
+
+this.value ===
+"Diantar via Kurir"
+
+?
+
+"block"
+
+:
+
+"none";
+
+};
+
+
+function confirmOrder(){
+
+let name =
+document
+.getElementById("name")
+.value
+.trim();
+
+
+let phone =
+document
+.getElementById("phone")
+.value
+.replace(/\D/g,"");
+
+
+let fulfillment =
+document
+.getElementById("fulfillment")
+.value;
+
+
+let address =
+document
+.getElementById("address")
+.value
+.trim();
+
+
+let payment =
+document
+.getElementById("payment")
+.value;
+
+
+if(!name){
+
+alert("Nama wajib diisi");
+
+return;
+
+}
+
+
+if(phone.length<8){
+
+alert("No. HP belum valid");
+
+return;
+
+}
+
+
+if(
+fulfillment==="Diantar via Kurir"
+&&
+!address
+){
+
+alert("Alamat penerima wajib diisi");
+
+return;
+
+}
+
+
+let p = products();
+
+
+for(let item of cart){
+
+let product =
+p.find(
+x=>Number(x.id)===Number(item.id)
+);
+
+
+if(
+!product ||
+Number(product.stock)<item.qty
+){
+
+alert(
+"Stok berubah, silakan periksa kembali."
+);
+
+return;
+
+}
+
+}
+
+
+for(let item of cart){
+
+let product =
+p.find(
+x=>Number(x.id)===Number(item.id)
+);
+
+product.stock -= item.qty;
+
+}
+
+
+saveProducts(p);
+
+
+let total =
+cart.reduce(
+(a,x)=>
+a+(Number(x.price)||0)*x.qty,
+0
+);
+
+
+let d = new Date();
+
+
+let number =
+
+"CSO-" +
+
+d.getFullYear() +
+
+String(
+d.getMonth()+1
+).padStart(2,"0") +
+
+String(
+d.getDate()
+).padStart(2,"0") +
+
+"-" +
+
+Date.now()
+.toString()
+.slice(-6);
+
+
+let transaction = {
+
+number:number,
+
+date:d.toISOString(),
+
+cashier:"Online",
+
+role:"Konsumen",
+
+salesChannel:"Online",
+
+customerName:name,
+
+customerPhone:phone,
+
+fulfillment:fulfillment,
+
+recipientAddress:
+address,
+
+paymentMethod:payment,
+
+paymentStatus:
+payment==="Cash"
+?
+"Belum Dibayar"
+:
+"Menunggu Pembayaran",
+
+items:
+
+cart.map(i=>({
+
+id:i.id,
+
+name:i.name,
+
+price:i.price,
+
+qty:i.qty,
+
+total:
+i.price*i.qty
+
+})),
+
+subtotal:total,
+
+discount:0,
+
+total:total,
+
+payment:0,
+
+change:0
+
+};
+
+
+let history =
+JSON.parse(
+localStorage.getItem("camila_transactions")
+||
+"[]"
+);
+
+
+if(!Array.isArray(history))
+history=[];
+
+
+history.push(transaction);
+
+
+localStorage.setItem(
+"camila_transactions",
+JSON.stringify(history)
+);
+
+
+localStorage.setItem(
+"camila_customer_name",
+name
+);
+
+
+localStorage.setItem(
+"camila_customer_phone",
+phone
+);
+
+
+let customers =
+JSON.parse(
+localStorage.getItem("camila_customers")
+||
+"[]"
+);
+
+
+if(!Array.isArray(customers))
+customers=[];
+
+
+let index =
+customers.findIndex(
+x=>x.phone===phone
+);
+
+
+let record = {
+
+name:name,
+
+phone:phone,
+
+online:true,
+
+lastPurchase:
+d.toISOString(),
+
+purchaseCount:
+(
+index>=0
+?
+Number(
+customers[index]
+.purchaseCount || 0
+)
+:
+0
+)+1
+
+};
+
+
+if(index>=0){
+
+customers[index] = {
+
+...customers[index],
+
+...record
+
+};
+
+}
+
+else{
+
+customers.push(record);
+
+}
+
+
+localStorage.setItem(
+"camila_customers",
+JSON.stringify(customers)
+);
+
+
+cart=[];
+
+renderCart();
+
+closeCheckout();
+
+
+document.getElementById(
+"successText"
+).innerHTML =
+
+"<b>"+number+"</b><br>" +
+
+rupiah(total) +
+
+" · " +
+
+payment +
+
+" · " +
+
+fulfillment +
+
+(
+address
+?
+
+"<br>Alamat: "+address
+
+:
+
+""
+);
+
+
+document
+.getElementById("successOverlay")
+.classList
+.add("show");
+
+}
+
+
+function closeSuccess(){
+
+document
+.getElementById("successOverlay")
+.classList
+.remove("show");
+
+render();
+
+}
+
+
+function logout(){
+
+let customers =
+JSON.parse(
+localStorage.getItem("camila_customers")
+||
+"[]"
+);
+
+
+let phone =
+localStorage.getItem(
+"camila_customer_phone"
+);
+
+
+let index =
+customers.findIndex(
+x=>x.phone===phone
+);
+
+
+if(index>=0){
+
+customers[index].online=false;
+
+localStorage.setItem(
+"camila_customers",
+JSON.stringify(customers)
+);
+
+}
+
+
+localStorage.removeItem(
+"camila_user"
+);
+
+localStorage.removeItem(
+"camila_role"
+);
+
+
+location.href="../login/";
+
+}
+
+
+document
+.getElementById("search")
+.oninput = render;
+
+
+render();
+
+renderCart();
+
+
+setInterval(
+render,
+1500
+);
+
+</script>
+
+</body>
+</html>
