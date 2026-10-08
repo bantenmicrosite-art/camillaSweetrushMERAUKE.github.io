@@ -3,414 +3,857 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Camila SweetRush</title>
+<meta name="theme-color" content="#d85b82">
+<title>Login | Camila SweetRush</title>
 
 <style>
-* {
-    box-sizing: border-box;
+:root{
+  --pink:#d85b82;
+  --pink-dark:#bd416b;
+  --soft:#fff1f5;
+  --ink:#382b31;
+  --muted:#8d7881;
+  --line:#eadde2;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #fff7fa, #fbdde7);
-    color: #3d3035;
+*{
+  box-sizing:border-box;
 }
 
-.container {
-    width: 100%;
-    max-width: 1000px;
-    min-height: 600px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: white;
-    border-radius: 28px;
-    overflow: hidden;
-    box-shadow: 0 25px 70px rgba(190, 70, 110, .18);
+html,body{
+  min-height:100%;
 }
 
-.brand {
-    padding: 55px;
-    color: white;
-    background: linear-gradient(145deg, #d83e6e, #f49ab4);
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 12%,#f3c5d273,transparent 28%),
+    radial-gradient(circle at 88% 86%,#d85b822e,transparent 30%),
+    linear-gradient(135deg,#fffaf8,#fff0f4);
 }
 
-.logo {
-    font-family: Georgia, serif;
-    font-size: 52px;
-    font-style: italic;
+.shell{
+  width:min(1080px,100%);
+  min-height:650px;
+  display:grid;
+  grid-template-columns:46% 54%;
+  overflow:hidden;
+  background:#fff;
+  border-radius:30px;
+  box-shadow:0 28px 90px #762f481f;
 }
 
-.subtitle {
-    font-size: 11px;
-    letter-spacing: 3px;
+.brand{
+  position:relative;
+  overflow:hidden;
+  padding:58px;
+  color:#fff;
+  background:linear-gradient(150deg,#b93d68,#d85b82 48%,#ee9bb4);
 }
 
-.tagline {
-    margin-top: 100px;
-    font-family: Georgia, serif;
-    font-size: 32px;
-    line-height: 1.3;
+.brand:before{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  right:-180px;
+  bottom:-150px;
+  border:1px solid #ffffff2e;
+  border-radius:50%;
 }
 
-.description {
-    max-width: 380px;
-    line-height: 1.7;
-    opacity: .9;
+.brand-inner{
+  position:relative;
+  z-index:1;
 }
 
-.login {
-    padding: 55px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.logo{
+  font:italic 58px Georgia,serif;
+  letter-spacing:-2px;
 }
 
-h1 {
-    margin: 0 0 8px;
-    font-size: 30px;
+.sub{
+  margin-top:3px;
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:700;
 }
 
-.welcome {
-    color: #8e7b83;
-    margin-bottom: 25px;
+.brand-copy{
+  margin-top:118px;
+  max-width:380px;
 }
 
-.roles {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 7px;
-    margin-bottom: 20px;
+.brand-copy h2{
+  margin:0 0 16px;
+  font:400 36px/1.18 Georgia,serif;
 }
 
-.role {
-    padding: 11px 4px;
-    border: 1px solid #eedde3;
-    background: #fff8fa;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 12px;
-    cursor: pointer;
+.brand-copy p{
+  margin:0;
+  max-width:355px;
+  font-size:14px;
+  line-height:1.8;
+  color:#ffffffe6;
 }
 
-.role.active {
-    background: #ffe0e9;
-    border-color: #e97899;
-    color: #c33260;
-    font-weight: bold;
+.badge{
+  display:inline-flex;
+  margin-top:34px;
+  padding:9px 13px;
+  border:1px solid #ffffff47;
+  border-radius:999px;
+  background:#ffffff1a;
+  font-size:11px;
 }
 
-.field {
-    margin-bottom: 16px;
+.form-area{
+  display:flex;
+  align-items:center;
+  padding:52px 58px;
 }
 
-.field label {
-    display: block;
-    margin-bottom: 7px;
-    font-size: 13px;
-    font-weight: bold;
+.form-wrap{
+  width:100%;
+  max-width:500px;
+  margin:auto;
 }
 
-.field input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #eadde2;
-    border-radius: 11px;
-    font-size: 14px;
-    outline: none;
+.eyebrow{
+  margin-bottom:8px;
+  color:var(--pink-dark);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
-.field input:focus {
-    border-color: #dc4774;
-    box-shadow: 0 0 0 4px rgba(220, 71, 116, .10);
+h1{
+  margin:0;
+  font:600 32px/1.2 Georgia,serif;
 }
 
-.password {
-    position: relative;
+.welcome{
+  margin:9px 0 27px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-.password button {
-    position: absolute;
-    right: 8px;
-    top: 30px;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    font-size: 16px;
+.roles{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:23px;
 }
 
-.options {
-    display: flex;
-    justify-content: space-between;
-    margin: 3px 0 20px;
-    font-size: 12px;
-    color: #8e7b83;
+.role{
+  min-height:52px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#fff;
+  color:#715f67;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:700;
 }
 
-.options a {
-    color: #ca3c67;
-    text-decoration: none;
+.role.active{
+  border-color:var(--pink);
+  background:var(--soft);
+  color:var(--pink-dark);
+  box-shadow:0 5px 16px #d85b821a;
 }
 
-.login-button {
-    width: 100%;
-    padding: 15px;
-    border: 0;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #d94171, #eb7095);
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
+.field{
+  margin-bottom:17px;
 }
 
-.footer {
-    margin-top: 18px;
-    padding: 12px;
-    background: #fff7f9;
-    border: 1px dashed #ebb3c3;
-    border-radius: 10px;
-    font-size: 11px;
-    color: #806b74;
-    line-height: 1.5;
+.title{
+  display:block;
+  margin-bottom:8px;
+  font-size:12px;
+  font-weight:800;
 }
 
-@media (max-width: 720px) {
+.input-wrap{
+  position:relative;
+}
 
-    .container {
-        grid-template-columns: 1fr;
-    }
+input[type=text],
+input[type=password],
+input[type=email]{
+  width:100%;
+  height:50px;
+  padding:0 14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  outline:0;
+  background:#fff;
+  color:var(--ink);
+  font-size:14px;
+}
 
-    .brand {
-        padding: 35px;
-        min-height: 280px;
-    }
+input:focus{
+  border-color:var(--pink);
+  box-shadow:0 0 0 4px #d85b821a;
+}
 
-    .tagline {
-        margin-top: 45px;
-        font-size: 27px;
-    }
+.password input{
+  padding-right:48px;
+}
 
-    .login {
-        padding: 35px 25px;
-    }
+.eye{
+  position:absolute;
+  right:8px;
+  top:7px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#927c85;
+  cursor:pointer;
+  font-size:16px;
+}
 
-    .roles {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.eye:hover{
+  background:var(--soft);
+  color:var(--pink-dark);
+}
+
+.options{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:2px 0 22px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.remember{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  cursor:pointer;
+}
+
+.remember input{
+  accent-color:var(--pink);
+}
+
+.link{
+  border:0;
+  background:none;
+  padding:0;
+  color:var(--pink-dark);
+  cursor:pointer;
+  font:inherit;
+}
+
+.link:hover{
+  text-decoration:underline;
+}
+
+.login-btn{
+  width:100%;
+  height:52px;
+  border:0;
+  border-radius:13px;
+  color:#fff;
+  background:linear-gradient(100deg,var(--pink-dark),#e57c9e);
+  box-shadow:0 10px 24px #bd416b33;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.login-btn:hover{
+  filter:brightness(1.03);
+}
+
+.status{
+  min-height:20px;
+  margin-top:13px;
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.status.error{
+  color:#b6385f;
+}
+
+.status.success{
+  color:#32805b;
+}
+
+.note{
+  margin-top:18px;
+  padding:12px 14px;
+  border:1px dashed #e8b4c5;
+  border-radius:12px;
+  background:#fff8fa;
+  color:#806d75;
+  font-size:10.5px;
+  line-height:1.55;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:#2d19225c;
+  backdrop-filter:blur(4px);
+  z-index:20;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-card{
+  width:min(420px,100%);
+  padding:28px;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 25px 70px #0003;
+}
+
+.modal-card h3{
+  margin:0 0 8px;
+  font:600 25px Georgia,serif;
+}
+
+.modal-card p{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
+.modal-actions button{
+  flex:1;
+  height:44px;
+  border-radius:11px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.cancel{
+  border:1px solid var(--line);
+  background:#fff;
+  color:#6d5b63;
+}
+
+.send{
+  border:0;
+  background:var(--pink);
+  color:#fff;
+}
+
+@media(max-width:800px){
+
+  body{
+    padding:14px;
+  }
+
+  .shell{
+    grid-template-columns:1fr;
+    min-height:auto;
+    border-radius:24px;
+  }
+
+  .brand{
+    min-height:300px;
+    padding:38px 30px;
+  }
+
+  .brand-copy{
+    margin-top:65px;
+  }
+
+  .brand-copy h2{
+    font-size:30px;
+  }
+
+  .form-area{
+    padding:36px 26px 40px;
+  }
+}
+
+@media(max-width:470px){
+
+  .logo{
+    font-size:48px;
+  }
+
+  .roles{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .form-area{
+    padding-left:20px;
+    padding-right:20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<main class="shell">
 
-    <section class="brand">
+<section class="brand">
 
-        <div class="logo">Camila</div>
+<div class="brand-inner">
 
-        <div class="subtitle">
-            SWEETRUSH · CAKE · PASTRY · HAPPINESS
-        </div>
+<div class="logo">Camila</div>
 
-        <div class="tagline">
-            Sweet moments,<br>
-            happier people. ♡
-        </div>
+<div class="sub">
+SWEETRUSH · CAKE · PASTRY · HAPPINESS
+</div>
 
-        <p class="description">
-            Selamat datang di sistem Camila SweetRush.
-            Masuk untuk mengelola operasional toko atau
-            melakukan pemesanan.
-        </p>
+<div class="brand-copy">
 
-    </section>
+<h2>
+Sweet moments,<br>
+happier people. ♡
+</h2>
 
+<p>
+Selamat datang di Camila SweetRush.
+Satu pintu untuk mengelola operasional,
+transaksi, dan pengalaman pelanggan.
+</p>
 
-    <section class="login">
+<div class="badge">
+✦ Premium Cake &amp; Pastry
+</div>
 
-        <h1>Selamat Datang 👋</h1>
+</div>
 
-        <p class="welcome">
-            Masuk ke akun Camila SweetRush
-        </p>
+</div>
 
-
-        <div class="roles">
-
-            <div class="role active" data-role="Admin">
-                Admin
-            </div>
-
-            <div class="role" data-role="Kasir">
-                Kasir
-            </div>
-
-            <div class="role" data-role="Owner">
-                Owner
-            </div>
-
-            <div class="role" data-role="Konsumen">
-                Konsumen
-            </div>
-
-        </div>
+</section>
 
 
-        <div class="field">
+<section class="form-area">
 
-            <label>
-                Username / Email
-            </label>
+<div class="form-wrap">
 
-            <input
-                id="username"
-                type="text"
-                placeholder="Masukkan username atau email"
-            >
+<div class="eyebrow">
+Camila SweetRush
+</div>
 
-        </div>
+<h1>
+Selamat Datang 👋
+</h1>
 
-
-        <div class="field password">
-
-            <label>
-                Password
-            </label>
-
-            <input
-                id="password"
-                type="password"
-                placeholder="Masukkan password"
-            >
-
-            <button
-                type="button"
-                onclick="togglePassword()"
-            >
-                👁
-            </button>
-
-        </div>
+<p class="welcome">
+Masuk ke akun Anda untuk melanjutkan.
+</p>
 
 
-        <div class="options">
+<div class="roles">
 
-            <label>
-                <input type="checkbox">
-                Ingat saya
-            </label>
+<button class="role active" type="button" data-role="Admin">
+Admin
+</button>
 
-            <a href="#">
-                Lupa password?
-            </a>
+<button class="role" type="button" data-role="Kasir">
+Kasir
+</button>
 
-        </div>
+<button class="role" type="button" data-role="Owner">
+Owner
+</button>
+
+<button class="role" type="button" data-role="Konsumen">
+Konsumen
+</button>
+
+</div>
 
 
-        <button
-            class="login-button"
-            onclick="login()"
-        >
-            Masuk
-        </button>
+<form id="loginForm">
+
+<div class="field">
+
+<label class="title" for="username">
+Username / Email
+</label>
+
+<input
+id="username"
+type="text"
+autocomplete="username"
+placeholder="Masukkan username atau email"
+>
+
+</div>
 
 
-        <div class="footer">
+<div class="field password">
 
-            <b>Camila SweetRush</b><br>
+<label class="title" for="password">
+Password
+</label>
 
-            Login prototype. Sistem autentikasi
-            online akan kita sambungkan pada tahap
-            berikutnya.
+<div class="input-wrap">
 
-        </div>
+<input
+id="password"
+type="password"
+autocomplete="current-password"
+placeholder="Masukkan password"
+>
 
-    </section>
+<button
+class="eye"
+id="toggleBtn"
+type="button"
+aria-label="Tampilkan password"
+>
+◉
+</button>
+
+</div>
+
+</div>
+
+
+<div class="options">
+
+<label class="remember">
+
+<input
+id="remember"
+type="checkbox"
+>
+
+<span>
+Ingat saya
+</span>
+
+</label>
+
+
+<button
+class="link"
+id="forgotBtn"
+type="button"
+>
+Lupa password?
+</button>
+
+</div>
+
+
+<button
+class="login-btn"
+type="submit"
+>
+Masuk ke Camila SweetRush
+</button>
+
+<div
+id="status"
+class="status"
+aria-live="polite"
+></div>
+
+</form>
+
+
+<div class="note">
+
+<b>Catatan:</b>
+halaman ini masih prototype.
+Autentikasi produksi akan kita sambungkan
+ke backend/database agar password dan sesi
+pengguna benar-benar aman.
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<div class="modal" id="forgotModal">
+
+<div class="modal-card">
+
+<h3>
+Lupa Password?
+</h3>
+
+<p>
+Masukkan email akun Anda.
+Fitur reset password akan kita sambungkan
+saat backend autentikasi sudah aktif.
+</p>
+
+<input
+id="resetEmail"
+type="email"
+placeholder="nama@email.com"
+>
+
+<div class="modal-actions">
+
+<button
+class="cancel"
+id="closeModal"
+type="button"
+>
+Batal
+</button>
+
+<button
+class="send"
+id="resetBtn"
+type="button"
+>
+Kirim Permintaan
+</button>
+
+</div>
+
+</div>
 
 </div>
 
 
 <script>
 
-let selectedRole = "Admin";
+let selectedRole =
+localStorage.getItem("camila_role") || "Admin";
 
-document.querySelectorAll(".role").forEach(function(role) {
+const roles =
+document.querySelectorAll(".role");
 
-    role.addEventListener("click", function() {
+const username =
+document.getElementById("username");
 
-        document
-            .querySelectorAll(".role")
-            .forEach(function(item) {
-                item.classList.remove("active");
-            });
+const password =
+document.getElementById("password");
 
-        role.classList.add("active");
+const remember =
+document.getElementById("remember");
 
-        selectedRole = role.dataset.role;
+const status =
+document.getElementById("status");
 
-    });
+const form =
+document.getElementById("loginForm");
+
+const modal =
+document.getElementById("forgotModal");
+
+
+function selectRole(role){
+
+  selectedRole = role;
+
+  roles.forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.role === role
+    );
+
+  });
+
+}
+
+
+roles.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => selectRole(button.dataset.role)
+  );
 
 });
 
 
-function togglePassword() {
+const saved =
+localStorage.getItem("camila_remembered_user");
 
-    const password =
-        document.getElementById("password");
+if(saved){
 
-    if (password.type === "password") {
+  username.value = saved;
 
-        password.type = "text";
-
-    } else {
-
-        password.type = "password";
-
-    }
+  remember.checked = true;
 
 }
 
 
-function login() {
+document
+.getElementById("toggleBtn")
+.addEventListener("click", function(){
 
-    const username =
-        document.getElementById("username").value;
+  const isText =
+    password.type === "text";
 
-    const password =
-        document.getElementById("password").value;
+  password.type =
+    isText ? "password" : "text";
 
-    if (username.trim() === "" ||
-        password.trim() === "") {
+  this.textContent =
+    isText ? "◉" : "○";
 
-        alert("Username dan password wajib diisi.");
+});
 
-        return;
 
-    }
+form.addEventListener("submit", function(event){
+
+  event.preventDefault();
+
+  status.className = "status";
+
+  const user =
+    username.value.trim();
+
+  const pass =
+    password.value.trim();
+
+
+  if(!user || !pass){
+
+    status.textContent =
+      "Username/email dan password wajib diisi.";
+
+    status.classList.add("error");
+
+    return;
+
+  }
+
+
+  if(remember.checked){
 
     localStorage.setItem(
-        "camila_role",
-        selectedRole
+      "camila_remembered_user",
+      user
     );
 
-    localStorage.setItem(
-        "camila_user",
-        username
+  }else{
+
+    localStorage.removeItem(
+      "camila_remembered_user"
     );
+
+  }
+
+
+  localStorage.setItem(
+    "camila_role",
+    selectedRole
+  );
+
+  localStorage.setItem(
+    "camila_user",
+    user
+  );
+
+
+  status.textContent =
+    "Login berhasil. Membuka dashboard...";
+
+  status.classList.add("success");
+
+
+  setTimeout(function(){
+
+    location.href =
+      "../?role=" +
+      encodeURIComponent(selectedRole);
+
+  },500);
+
+});
+
+
+document
+.getElementById("forgotBtn")
+.onclick = function(){
+
+  modal.classList.add("show");
+
+  document
+    .getElementById("resetEmail")
+    .focus();
+
+};
+
+
+document
+.getElementById("closeModal")
+.onclick = function(){
+
+  modal.classList.remove("show");
+
+};
+
+
+modal.onclick = function(event){
+
+  if(event.target === modal){
+
+    modal.classList.remove("show");
+
+  }
+
+};
+
+
+document
+.getElementById("resetBtn")
+.onclick = function(){
+
+  const email =
+    document.getElementById("resetEmail")
+    .value
+    .trim();
+
+
+  if(!email){
 
     alert(
-        "Login prototype berhasil sebagai " +
-        selectedRole
+      "Masukkan email terlebih dahulu."
     );
 
-}
+    return;
+
+  }
+
+
+  modal.classList.remove("show");
+
+  status.textContent =
+    "Permintaan reset password dicatat. " +
+    "Email reset akan aktif setelah backend tersambung.";
+
+};
 
 </script>
 
