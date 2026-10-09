@@ -72,6 +72,7 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 <button type="button" class="role-btn" data-role="Konsumen">
   <span>Konsumen</span>
 </button>
+  </div>
 
   <form id="loginForm">
     <div class="form-group" id="adminNameGroup">
@@ -110,7 +111,7 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 
 
     
-  <div class="security-note"><strong>Catatan:</strong> halaman ini masih prototype. Autentikasi produksi nantinya dapat disambungkan ke backend/database.</div>
+  <div class="security-note"><strong>Catatan:</strong> akses Admin dibatasi untuk akun yang telah terdaftar. Versi ini masih prototype; autentikasi yang benar-benar aman memerlukan backend/database.</div>
 </section>
 </div>
 
@@ -206,13 +207,29 @@ loginForm.addEventListener("submit",function(event){
       return;
     }
 
-    localStorage.setItem("camila_user",adminNameValue);
+    const authorizedAdmins = [
+      { name: "Andi Eras", password: "1990" },
+      { name: "Jelita", password: "2026" }
+    ];
+    const authorizedAdmin = authorizedAdmins.find(function(admin){
+      return admin.name.toLowerCase() === adminNameValue.toLowerCase()
+        && admin.password === passwordValue;
+    });
+
+    if(!authorizedAdmin){
+      showToast("Nama Admin atau sandi tidak sesuai.");
+      password.value = "";
+      password.focus();
+      return;
+    }
+
+    localStorage.setItem("camila_user",authorizedAdmin.name);
     localStorage.setItem("camila_role","Admin");
     localStorage.removeItem("camila_customer_name");
     localStorage.removeItem("camila_customer_phone");
 
     if(remember.checked){
-      localStorage.setItem("camila_remembered_user",adminNameValue);
+      localStorage.setItem("camila_remembered_user",authorizedAdmin.name);
     }else{
       localStorage.removeItem("camila_remembered_user");
     }
