@@ -93,3 +93,132 @@ setInterval(()=>{try{let p=JSON.parse(localStorage.getItem("camila_products")||"
     }
   });
 </script>
+
+<!-- INTEGRASI POS FIREBASE: REALTIME PRODUK, KERANJANG, & PENGURANGAN STOK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { 
+    getFirestore, collection, doc, onSnapshot, addDoc, updateDoc, increment, serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // 1. Konfigurasi Firebase Camila SweetRush
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIDWWS6fDgstz3uI67uCGfrpvFaztJmPI",
+    authDomain: "camila-sweetrush.firebaseapp.com",
+    projectId: "camila-sweetrush",
+    storageBucket: "camila-sweetrush.firebasestorage.app",
+    messagingSenderId: "774355752040",
+    appId: "1:774355752040:web:fcd6a2d05d9c5a3db657dd",
+    measurementId: "G-L9BEZN4HMH"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  let dataProduk = [];
+  let keranjang = [];
+
+  // 2. Ambil & Render Produk dari Firestore secara Real-Time
+  const containerProduk = document.querySelector(".grid-produk") || document.querySelector("#daftar-produk") || document.body;
+
+  onSnapshot(collection(db, "produk"), (snapshot) => {
+    dataProduk = [];
+    snapshot.forEach((docSnap) => {
+      dataProduk.push({ id: docSnap.id, ...docSnap.data() });
+    });
+    renderProduk(dataProduk);
+  });
+
+  function renderProduk(list) {
+    // Kosongkan daftar sebelum render ulang
+    let html = "";
+    list.forEach((item) => {
+      const hargaFormat = Number(item.harga || 0).toLocaleString("id-ID");
+      html += `
+        <div class="card-produk" style="border:1px solid #ffe0e6; padding:15px; border-radius:12px; background:#fff; margin-bottom:15px;">
+          <div style="font-size:40px; text-align:center;">🍰</div>
+          <h4 style="margin:10px 0 5px; color:#333;">${item.nama}</h4>
+          <span style="font-size:12px; color:#888; background:#fff0f3; padding:3px 8px; border-radius:10px;">${item.kategori || 'Cake'}</span>
+          <p style="font-weight:bold; color:#d81b60; margin:8px 0;">Rp ${hargaFormat}</p>
+          <p style="font-size:12px; color:${item.stok > 0 ? '#4caf50' : '#f44336'};">Stok: ${item.stok}</p>
+          <button class="btn-tambah" data-id="${item.id}" ${item.stok <= 0 ? 'disabled' : ''} 
+                  style="width:100%; padding:8px; background:#e91e63; color:#fff; border:none; border-radius:8px; cursor:pointer;">
+            ${item.stok > 0 ? '+ Tambah ke Keranjang' : 'Stok Habis'}
+          </button>
+        </div>
+      `;
+    });
+    
+    // Cari wadah di HTML untuk menaruh kartu produk
+    const targetEl = document.querySelector(".grid-produk") || document.querySelector("#daftar-produk");
+    if (targetEl) targetEl.innerHTML = html;
+  }
+
+  // 3. Tangani Klik "+ Tambah ke Keranjang"
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-tambah")) {
+      const id = e.target.getAttribute("data-id");
+      const produk = dataProduk.find(p => p.id === id);
+      if (!produk) return;
+
+      const adaDiKeranjang = keranjang.find(item => item.id === id);
+      if (adaDiKeranjang) {
+        if (adaDiKeranjang.qty < produk.stok) {
+          adaDiKeranjang.qty++;
+        } else {
+          alert("Jumlah melebihi stok yang tersedia!");
+        }
+      } else {
+        keranjang.push({ id: produk.id, nama: produk.nama, harga: produk.harga, qty: 1 });
+      }
+      updateTampilanKeranjang();
+    }
+  });
+
+  // 4. Update Tampilan Keranjang & Total Belanja
+  function updateTampilanKeranjang() {
+    let subtotal = 0;
+    let totalItem = 0;
+
+    keranjang.forEach(item => {
+      subtotal += item.harga * item.qty;
+      totalItem += item.qty;
+    });
+
+    // Update angka ringkasan di UI
+    const totalEl = document.querySelector("#total-harga") || document.querySelector(".Total-Harga");
+    if (totalEl) totalEl.innerText = `Rp ${subtotal.toLocaleString("id-ID")}`;
+  }
+
+  // 5. Simpan Transaksi & Kurangi Stok di Firestore
+  window.prosesSelesaiTransaksi = async function() {
+    if (keranjang.length === 0) {
+      alert("Keranjang masih kosong!");
+      return;
+    }
+
+    try {
+      // A. Simpan data transaksi ke Firestore
+      await addDoc(collection(db, "transaksi"), {
+        items: keranjang,
+        tanggal: serverTimestamp(),
+        total: keranjang.reduce((sum, item) => sum + (item.harga * item.qty), 0)
+      });
+
+      // B. Kurangi stok produk secara otomatis di Firestore
+      for (const item of keranjang) {
+        const produkRef = doc(db, "produk", item.id);
+        await updateDoc(produkRef, {
+          stok: increment(-item.qty)
+        });
+      }
+
+      alert("Transaksi Berhasil! Stok telah otomatis berkurang.");
+      keranjang = [];
+      updateTampilanKeranjang();
+    } catch (err) {
+      console.error("Gagal melakukan transaksi:", err);
+      alert("Terjadi kesalahan saat memproses transaksi.");
+    }
+  };
+</script>
