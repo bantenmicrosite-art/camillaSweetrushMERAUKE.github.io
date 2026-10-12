@@ -286,3 +286,56 @@ forgotModal.addEventListener("click",function(event){if(event.target===forgotMod
 </script>
 </body>
 </html>
+
+<!-- INTEGRASI FIREBASE & LOGIN USERNAME -->
+<script type="module">
+  // 1. Import SDK Firebase dari CDN
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // 2. Konfigurasi Firebase Camila SweetRush
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIDWWS6fDgstz3uI67uCGfrpvFaztJmPI",
+    authDomain: "camila-sweetrush.firebaseapp.com",
+    projectId: "camila-sweetrush",
+    storageBucket: "camila-sweetrush.firebasestorage.app",
+    messagingSenderId: "774355752040",
+    appId: "1:774355752040:web:fcd6a2d05d9c5a3db657dd",
+    measurementId: "G-L9BEZN4HMH"
+  };
+
+  // 3. Inisialisasi Firebase Services
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // 4. Logika Login Username & Password
+  // Pastikan ID <form>, <input username>, dan <input password> sesuai dengan HTML Anda
+  const loginForm = document.querySelector("form"); 
+  const usernameInput = document.querySelector("input[type='text']");
+  const passwordInput = document.querySelector("input[type='password']");
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const username = usernameInput.value.trim().toLowerCase();
+      const password = passwordInput.value;
+
+      // Ubah username menjadi format email dummy untuk Firebase Auth
+      const dummyEmail = `${username}@camilasweetrush.local`;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, dummyEmail, password);
+        alert(`Login berhasil! Selamat datang, ${username}`);
+        
+        // Arahkan ke halaman Penjualan / Dashboard setelah login berhasil
+        window.location.href = "../penjualan/index.html"; 
+      } catch (error) {
+        alert("Gagal Login: Periksa kembali Nama Pengguna dan Password Anda.");
+        console.error("Firebase Auth Error:", error.message);
+      }
+    });
+  }
+</script>
